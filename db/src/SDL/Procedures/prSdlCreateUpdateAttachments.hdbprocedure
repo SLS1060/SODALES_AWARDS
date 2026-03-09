@@ -1,0 +1,49 @@
+/************************************* Project : Sodales Award **************************************/
+/* Developer Name 			  	: Sanjyot Phadatare										            */
+/* Date      					: 06/03/2026	                                                    */
+/* Application Name             : Add Awards                                                        */
+/* Procedure Name 				: prSdlCreateUpdateAwards.hdbprocedure			                    */
+/* Functionality                : To create and update Awards                                       */
+/****************************************************************************************************/
+
+PROCEDURE "prSdlCreateUpdateAttachments"( 
+    IN  ATHID  BIGINT,            -- Attachment ID
+    IN  AWRID  INTEGER,           -- Award ID
+    IN  ATTNM  NVARCHAR(250),     -- Attachment Name
+    IN  TITLE  NVARCHAR(250),     -- Document Title
+    IN  OBJID  NVARCHAR(50),      -- Object ID
+    IN  URLDT  NVARCHAR(500),     -- URL
+    OUT OATHID BIGINT             -- Output Parameter
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+
+ AS
+BEGIN
+
+    DECLARE COLUMN_ID INTEGER;
+    DECLARE QU NVARCHAR(150); 
+    DECLARE SEQ NVARCHAR(100); 
+
+-- insert data into tables
+IF :ATHID = 0 THEN
+
+    INSERT INTO SDL_T_ATACH(AWRID, ATTNM, TITLE, OBJID, URLDT, ISDEL, CRTBY, CRTDT, CRTTM, CHNBY, CHNDT, CHNTM)
+                     VALUES (AWRID, ATTNM, TITLE, OBJID, URLDT, '0', SESSION_CONTEXT('APPLICATIONUSER'), CURRENT_DATE, CURRENT_TIME, SESSION_CONTEXT('APPLICATIONUSER'), CURRENT_DATE, CURRENT_TIME);
+
+                                              
+        SELECT '_SYS_SEQUENCE_'|| COLUMN_ID||'_#0_#' INTO SEQ FROM TABLE_COLUMNS WHERE (TABLE_NAME='SDL_T_ATACH' ) AND COLUMN_NAME='ATHID';
+        QU :='select '||SEQ||'.CURRVAL from DUMMY';
+        EXECUTE IMMEDIATE QU INTO OATHID;
+        
+-- Update data into table
+ELSE 
+    UPDATE SDL_T_ATACH 
+    SET AWRID=:AWRID, ATTNM=:ATTNM, TITLE=:TITLE, OBJID=:OBJID, URLDT=:URLDT, 
+        CHNBY=SESSION_CONTEXT('APPLICATIONUSER'), CHNDT=CURRENT_DATE, CHNTM=CURRENT_TIME
+    WHERE ATHID=:ATHID AND ISDEL='0';
+
+    OATHID:=:ATHID;
+
+END IF;
+END

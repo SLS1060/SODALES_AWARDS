@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_T_AWARDDEATILS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SDL_T_AWARDDEATILS"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SDL_T_AWRDS">
+    <resourceUri>SDL_T_AWRDS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="AWRID"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="AWARD"/>
+      <viewAttribute id="ACMNT"/>
+      <viewAttribute id="CATEG"/>
+      <viewAttribute id="NOTES"/>
+      <viewAttribute id="STATS"/>
+      <viewAttribute id="REPBY"/>
+      <viewAttribute id="REPDT"/>
+      <viewAttribute id="AWRDT"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SDL_T_AWRDS"/>
+    <filter>&quot;ISDEL&quot;='0'</filter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="AWRID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Award ID - Primary Key"/>
+      <keyMapping columnObjectName="Projection_1" columnName="AWRID"/>
+    </attribute>
+    <attribute id="EMPID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Employee ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="EMPID"/>
+    </attribute>
+    <attribute id="AWARD" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AWARD"/>
+      <keyMapping columnObjectName="Projection_1" columnName="AWARD"/>
+    </attribute>
+    <attribute id="ACMNT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Achivement (Dropdown)"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ACMNT"/>
+    </attribute>
+    <attribute id="CATEG" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Award Category"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CATEG"/>
+    </attribute>
+    <attribute id="NOTES" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Notes"/>
+      <keyMapping columnObjectName="Projection_1" columnName="NOTES"/>
+    </attribute>
+    <attribute id="STATS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Status"/>
+      <keyMapping columnObjectName="Projection_1" columnName="STATS"/>
+    </attribute>
+    <attribute id="REPBY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reported By"/>
+      <keyMapping columnObjectName="Projection_1" columnName="REPBY"/>
+    </attribute>
+    <attribute id="REPDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reported Date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="REPDT"/>
+    </attribute>
+    <attribute id="AWRDT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Award Date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="AWRDT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

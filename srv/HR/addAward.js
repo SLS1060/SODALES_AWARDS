@@ -1,0 +1,21 @@
+/************************************* Project : Sodales Awards **********************************/
+/* Developer Name 			  	: Sanjyot Phadatare										         */
+/* Date      					: 06/03/2026                                                     */
+/* Application Name             : Awards                                                         */
+/* Library Name 				: sodalesAwardHandler.js            			                 */
+/* Functionality                : All post functions which are used for add Awards               */
+/*************************************************************************************************/
+// Import the SAP CDS runtime library to define service implementation 
+const cds = require('@sap/cds');
+
+const addAwards = require('../handlers/applications/sodalesAwardHandlers');
+
+
+module.exports = cds.service.impl(function () {
+
+    // Add new Award (main operation)
+    this.on("b9q2fsan18bqxar0", addAwards.AddAwards);
+
+    this.on("MenppOLcoVyeMVTg",addAwards.DeleteAwards);
+
+})

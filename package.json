@@ -1,0 +1,41 @@
+{
+  "name": "SODALES_AWARDS-main",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.15.9",
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "dev": "cds watch --profile hybrid"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[hybrid]": {
+        "auth": {
+          "kind": "mocked"
+        }
+      },
+      "db": {
+        "kind": "hana"
+      },
+      "auth": {
+        "kind": "xsuaa"
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    }
+  }
+}

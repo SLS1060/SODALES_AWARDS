@@ -1,0 +1,12 @@
+
+###
+POST http://localhost:4004/odata/v4/awards/b9q2fsan18bqxar0
+Content-Type: application/json
+
+{"D4OXYPALUYAIDNSO": "{\"AwardDetails\":{\"AWRID\":0,\"EMPID\":\"SLS1379\",\"AWARD\":10,\"ACMNT\":1,\"CATEG\":27,\"CNAME\":\"Certification Name\",\"NOTES\":\"Notes\",\"STATS\":31,\"REPBY\":\"SLS1160\",\"REPDT\":\"2026-03-06\",\"AWRDT\":\"2026-03-06\",\"Attachments\":[{\"ATHID\":0,\"ATTNM\":\"Attachment Name\",\"TITLE\":\"Title\",\"URLDT\":\"URL1\"},{\"ATHID\":0,\"ATTNM\":\"Attachment Name2\",\"TITLE\":\"Title2\",\"URLDT\":\"URL2\"}]}}"}
+
+
+###
+{"D4OXYPALUYAIDNSO":"{\"AwardDetails\":{\"AWRID\":0,\"EMPID\":\"SLS1379\",\"AWARD\":10,\"ACMNT\":1, \"CATEG\":27, \"NOTES\":\"Notes\", \"STATS\":31, \"REPBY\":\"SLS1160\",\"REPDT\":\"2026-03-06\",\"AWRDT\":\"2026-03-06\", \"Attachments\": [{\"ATHID\":0,\"ATTNM\":\"Attachment Name\",\"TITLE\":\"Title\",\"URLDT\":\"URL1\" }, {\"ATHID\":0,\"ATTNM\":\"Attachment Name2\",\"TITLE\":\"Title2\",\"URLDT\":\"URL2\" }]}}"}
+ 
+###

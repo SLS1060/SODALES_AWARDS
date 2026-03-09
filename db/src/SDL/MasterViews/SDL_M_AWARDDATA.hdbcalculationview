@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_M_AWARDDATA" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SDL_M_AWARDDATA"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SDL_M_ARDNM">
+    <resourceUri>SDL_M_ARDNM</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="ANMID"/>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="ANAME"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SDL_M_ARDNM"/>
+    <filter>&quot;ISDEL&quot;='0'</filter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="ANAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Award Name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ANAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ANMID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Primary Key"/>
+      <measureMapping columnObjectName="Projection_1" columnName="ANMID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="UNQID" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Unique Id"/>
+      <measureMapping columnObjectName="Projection_1" columnName="UNQID"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="211"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
