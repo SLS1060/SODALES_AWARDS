@@ -6,7 +6,7 @@
 /* Functionality                : All post functions which are used for add Awards               */
 /*************************************************************************************************/
 
-const {setValue, validateField, fetchPayload, createCMISFolder } = require('../../utils/common');
+const { setValue, validateField, fetchPayload, createCMISFolder } = require('../../utils/common');
 
 // Importing cds
 const cds = require('@sap/cds');
@@ -20,12 +20,12 @@ async function AddAwards(req) {
         //Reading payload through req.data
         oInput = await fetchPayload(req);
 
-        
+
         //Extracting Payload
         let oAwardDetails = oInput.AwardDetails;
         console.log(oAwardDetails.Attachments);
-        let Attachments  = oAwardDetails.Attachments;
-        
+        let Attachments = oAwardDetails.Attachments;
+
         if (oAwardDetails.AWRID < 0 || !Number.isInteger(oAwardDetails.AWRID)) {
             throw new 'Invalid Award Id';
         }
@@ -82,10 +82,10 @@ async function AddAwards(req) {
         }
     }
     catch (error) {
-         return req.error({
+        return req.error({
             code: 500,
             message: error.toString()
-         });
+        });
     }
 }
 
@@ -99,16 +99,17 @@ async function DeleteAwardsAttachments(req) {
         //Extracting Payload
         let oAwardDetails = oInput.oAwardDetails;
 
-         result = await cds.run(`CALL "prSdlDeleteAttachments"(?,?)`, [
+        result = await cds.run(`CALL "prSdlDeleteAttachments"(?,?)`, [
             setValue(oAttachmentD.AWRID),
             setValue(oAttachmentD.ATHID)
-         ]);
-        }
-            catch (error) {
-         return req.error({
+        ]);
+    }
+    catch (error) {
+        
+        return req.error({
             code: 500,
             message: error.toString()
-         });
+        });
     }
 }
 
@@ -123,21 +124,21 @@ async function AcceptReject(req) {
         //Extracting Payload
         let oA = oInput.Attachments;
 
-         result = await cds.run(`CALL prSdlUpdateAwardsStatus(?,?,?)`, [
+        result = await cds.run(`CALL prSdlUpdateAwardsStatus(?,?,?)`, [
             setValue(oAwardDetails.AWRID),
             setValue(oAwardDetails.STATS),
             setValue(oAwardDetails.STATS_TXT)
-         ]);
-        }
-            catch (error) {
-         return req.error({
+        ]);
+    }
+    catch (error) {
+        return req.error({
             code: 500,
             message: error.toString()
-         });
+        });
     }
 }
 
-module.exports ={
+module.exports = {
     AddAwards,
     DeleteAwardsAttachments,
     AcceptReject
