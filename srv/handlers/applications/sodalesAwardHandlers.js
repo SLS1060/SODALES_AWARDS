@@ -69,6 +69,8 @@ async function AddAwards(req) {
             "AttachmentStatus": CMIS_Status || true,
             "AttachmentPath": folderpath + "/" + filename,
         };
+
+        return JSON.stringify(returnObj);
     }
     catch (error) {
         return req.error({
