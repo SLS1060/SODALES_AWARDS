@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_T_HRLANDINGPAGE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
-<descriptions defaultDescription="SDL_T_LANDINGPAGE"/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_T_HRLANDINGPAGE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="SDL_T_EMPLOYEELANDINGPAGE"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
   <DataSource id="SDL_T_AWRDS">
     <resourceUri>SDL_T_AWRDS</resourceUri>
   </DataSource>
-  <DataSource id="SDL_M_ARDNM">
-    <resourceUri>SDL_M_ARDNM</resourceUri>
+  <DataSource id="SDL_M_MSTDT">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
   </DataSource>
-  <DataSource id="Projection_4$$$$SDL_T_AWRDS$$">
-    <resourceUri>SDL_T_AWRDS</resourceUri>
+  <DataSource id="Projection_3$$$$SDL_M_MSTDT$$">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_4$$$$SDL_M_MSTDT$$">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_5$$$$SDL_M_MSTDT$$">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
   </DataSource>
 </dataSources>
 <snapshotProcedures/>
@@ -22,73 +28,81 @@
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
+      <viewAttribute id="CNAME"/>
       <viewAttribute id="NOTES"/>
       <viewAttribute id="STATS"/>
       <viewAttribute id="REPBY"/>
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ISDEL"/>
-    
-      <viewAttribute id="CNAME"/>
-    
+      <viewAttribute id="ATPTH"/>
       <viewAttribute id="RBYNM"/>
-    
       <viewAttribute id="STATS_TXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SDL_T_AWRDS"/>
     <filter>&quot;ISDEL&quot;='0'</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="SQL">
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
     <viewAttributes>
-      <viewAttribute id="ANMID"/>
       <viewAttribute id="UNQID"/>
-      <viewAttribute id="ANAME"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
       <viewAttribute id="ISDEL"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="SDL_M_ARDNM"/>
-    <filter>&quot;ISDEL&quot;='0'</filter>
+    <input node="SDL_M_MSTDT"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot;='Status'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_3$$$$SDL_M_MSTDT$$"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot; = 'Award Name'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4" filterExpressionLanguage="SQL">
     <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_4$$$$SDL_M_MSTDT$$"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot; ='Achievement'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_5$$$$SDL_M_MSTDT$$"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot;='Category'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+    <viewAttributes>
       <viewAttribute id="AWRID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
+      <viewAttribute id="CNAME"/>
       <viewAttribute id="NOTES"/>
       <viewAttribute id="STATS"/>
       <viewAttribute id="REPBY"/>
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ISDEL"/>
-      <viewAttribute id="ANAME"/>
-    
+      <viewAttribute id="ATPTH"/>
       <viewAttribute id="RBYNM"/>
-    
-      <viewAttribute id="STATS_TXT"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="Projection_4$$$$SDL_T_AWRDS$$">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="CNAME"/>
-    </input>
-    <filter>&quot;ISDEL&quot;='0' AND &quot;ACMNT&quot;!=1</filter>
-  </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter" filterExpressionLanguage="SQL">
-    <viewAttributes>
-      <viewAttribute id="AWRID"/>
-      <viewAttribute id="AWARD"/>
-      <viewAttribute id="ACMNT"/>
-      <viewAttribute id="CATEG"/>
-      <viewAttribute id="NOTES"/>
-      <viewAttribute id="STATS"/>
-      <viewAttribute id="REPBY"/>
-      <viewAttribute id="REPDT"/>
-      <viewAttribute id="AWRDT"/>
-      <viewAttribute id="ANMID"/>
       <viewAttribute id="ANAME"/>
-      <viewAttribute id="RBYNM"/>
-      <viewAttribute id="STATS_TXT"/>
       <viewAttribute hidden="true" id="JOIN$AWARD$UNQID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -97,149 +111,259 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CNAME" source="CNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="NOTES" source="NOTES"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPBY" source="REPBY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISDEL" source="ISDEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATPTH" source="ATPTH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="STATS_TXT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AWARD$UNQID" source="AWARD"/>
     </input>
     <input node="Projection_3">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ANMID" source="ANMID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="TXVAL"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AWARD$UNQID" source="UNQID"/>
     </input>
-    <filter>&quot;ACMNT&quot;=1</filter>
     <joinAttribute name="JOIN$AWARD$UNQID"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="CN_N" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
+      <viewAttribute id="CNAME"/>
       <viewAttribute id="NOTES"/>
       <viewAttribute id="STATS"/>
       <viewAttribute id="REPBY"/>
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
-      <viewAttribute id="ANAME"/>
-    
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute id="ATPTH"/>
       <viewAttribute id="RBYNM"/>
-    
       <viewAttribute id="STATS_TXT"/>
+      <viewAttribute id="ANAME"/>
+      <viewAttribute hidden="true" id="JOIN$STATS$UNQID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Join_1"/>
+    <input node="Join_1_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AWRID" source="AWRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CNAME" source="CNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NOTES" source="NOTES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REPBY" source="REPBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISDEL" source="ISDEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATPTH" source="ATPTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATS$UNQID" source="STATS"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="TXVAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATS$UNQID" source="UNQID"/>
+    </input>
+    <joinAttribute name="JOIN$STATS$UNQID"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_3" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
+      <viewAttribute id="CNAME"/>
       <viewAttribute id="NOTES"/>
       <viewAttribute id="STATS"/>
       <viewAttribute id="REPBY"/>
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
-      <viewAttribute id="ANAME"/>
-    
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute id="ATPTH"/>
       <viewAttribute id="RBYNM"/>
-    
       <viewAttribute id="STATS_TXT"/>
+      <viewAttribute id="CATEG_TXT"/>
+      <viewAttribute id="ANAME"/>
+      <viewAttribute hidden="true" id="JOIN$CATEG$UNQID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Projection_4" emptyUnionBehavior="NO_ROW">
+    <input node="Join_1_2">
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRID" source="AWRID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CNAME" source="CNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="NOTES" source="NOTES"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPBY" source="REPBY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
-    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISDEL" source="ISDEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATPTH" source="ATPTH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
-    
       <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="STATS_TXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CATEG$UNQID" source="CATEG"/>
     </input>
-    <input node="Projection_2" emptyUnionBehavior="NO_ROW">
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEG_TXT" source="TXVAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CATEG$UNQID" source="UNQID"/>
+    </input>
+    <joinAttribute name="JOIN$CATEG$UNQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_4" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="AWRID"/>
+      <viewAttribute id="AWARD"/>
+      <viewAttribute id="ACMNT"/>
+      <viewAttribute id="CATEG"/>
+      <viewAttribute id="CNAME"/>
+      <viewAttribute id="NOTES"/>
+      <viewAttribute id="STATS"/>
+      <viewAttribute id="REPBY"/>
+      <viewAttribute id="REPDT"/>
+      <viewAttribute id="AWRDT"/>
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute id="ATPTH"/>
+      <viewAttribute id="RBYNM"/>
+      <viewAttribute id="STATS_TXT"/>
+      <viewAttribute id="CATEG_TXT"/>
+      <viewAttribute id="ANAME"/>
+      <viewAttribute id="ACMNT_TXT"/>
+      <viewAttribute hidden="true" id="JOIN$ACMNT$UNQID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRID" source="AWRID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CNAME" source="CNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="NOTES" source="NOTES"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPBY" source="REPBY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
-    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISDEL" source="ISDEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ATPTH" source="ATPTH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
-    
       <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="STATS_TXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEG_TXT" source="CATEG_TXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ACMNT$UNQID" source="ACMNT"/>
     </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT_TXT" source="TXVAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ACMNT$UNQID" source="UNQID"/>
+    </input>
+    <joinAttribute name="JOIN$ACMNT$UNQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_6">
+    <viewAttributes>
+      <viewAttribute id="AWRID"/>
+      <viewAttribute id="AWARD"/>
+      <viewAttribute id="ACMNT"/>
+      <viewAttribute id="CATEG"/>
+      <viewAttribute id="CNAME"/>
+      <viewAttribute id="NOTES"/>
+      <viewAttribute id="STATS"/>
+      <viewAttribute id="REPBY"/>
+      <viewAttribute id="REPDT"/>
+      <viewAttribute id="AWRDT"/>
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute id="ATPTH"/>
+      <viewAttribute id="RBYNM"/>
+      <viewAttribute id="STATS_TXT"/>
+      <viewAttribute id="CATEG_TXT"/>
+      <viewAttribute id="ANAME"/>
+      <viewAttribute id="ACMNT_TXT"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="AWARD_" datatype="NVARCHAR" length="1000" expressionLanguage="SQL">
+        <formula>COALESCE(&quot;ANAME&quot;,&quot;CNAME&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_1_4"/>
   </calculationView>
 </calculationViews>
-
-<logicalModel id="Union_1">
+<logicalModel id="Projection_6">
   <attributes>
     <attribute id="AWRID" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Award ID - Primary Key"/>
-      <keyMapping columnObjectName="Union_1" columnName="AWRID"/>
+      <keyMapping columnObjectName="Projection_6" columnName="AWRID"/>
     </attribute>
     <attribute id="AWARD" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AWARD"/>
-      <keyMapping columnObjectName="Union_1" columnName="AWARD"/>
+      <keyMapping columnObjectName="Projection_6" columnName="AWARD"/>
     </attribute>
     <attribute id="ACMNT" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Achivement (Dropdown)"/>
-      <keyMapping columnObjectName="Union_1" columnName="ACMNT"/>
+      <keyMapping columnObjectName="Projection_6" columnName="ACMNT"/>
     </attribute>
     <attribute id="CATEG" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Award Category"/>
-      <keyMapping columnObjectName="Union_1" columnName="CATEG"/>
+      <keyMapping columnObjectName="Projection_6" columnName="CATEG"/>
     </attribute>
-    <attribute id="NOTES" order="5" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Notes"/>
-      <keyMapping columnObjectName="Union_1" columnName="NOTES"/>
-    </attribute>
-    <attribute id="STATS" order="6" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Status"/>
-      <keyMapping columnObjectName="Union_1" columnName="STATS"/>
-    </attribute>
-    <attribute id="REPBY" order="7" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Reported By"/>
-      <keyMapping columnObjectName="Union_1" columnName="REPBY"/>
-    </attribute>
-    <attribute id="REPDT" order="8" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Reported Date"/>
-      <keyMapping columnObjectName="Union_1" columnName="REPDT"/>
-    </attribute>
-    <attribute id="AWRDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Award Date"/>
-      <keyMapping columnObjectName="Union_1" columnName="AWRDT"/>
-    </attribute>
-    <attribute id="ANAME" order="10" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CNAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Certification Name"/>
-      <keyMapping columnObjectName="Union_1" columnName="ANAME"/>
+      <keyMapping columnObjectName="Projection_6" columnName="CNAME"/>
     </attribute>
-  
-    <attribute id="RBYNM" order="11" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="NOTES" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Notes"/>
+      <keyMapping columnObjectName="Projection_6" columnName="NOTES"/>
+    </attribute>
+    <attribute id="STATS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Status"/>
+      <keyMapping columnObjectName="Projection_6" columnName="STATS"/>
+    </attribute>
+    <attribute id="REPBY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reported By"/>
+      <keyMapping columnObjectName="Projection_6" columnName="REPBY"/>
+    </attribute>
+    <attribute id="REPDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reported Date"/>
+      <keyMapping columnObjectName="Projection_6" columnName="REPDT"/>
+    </attribute>
+    <attribute id="AWRDT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Award Date"/>
+      <keyMapping columnObjectName="Projection_6" columnName="AWRDT"/>
+    </attribute>
+    <attribute id="ISDEL" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Is Deleted Flag (1=True/0=False)"/>
+      <keyMapping columnObjectName="Projection_6" columnName="ISDEL"/>
+    </attribute>
+    <attribute id="ATPTH" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="attachment folder path"/>
+      <keyMapping columnObjectName="Projection_6" columnName="ATPTH"/>
+    </attribute>
+    <attribute id="RBYNM" order="13" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Reported By Name"/>
-  
-      <keyMapping columnObjectName="Union_1" columnName="RBYNM"/>
-  
+      <keyMapping columnObjectName="Projection_6" columnName="RBYNM"/>
     </attribute>
-  
-    <attribute id="STATS_TXT" order="12" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Status text"/>
-      <keyMapping columnObjectName="Union_1" columnName="STATS_TXT"/>
+    <attribute id="STATS_TXT" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Projection_6" columnName="STATS_TXT"/>
+    </attribute>
+    <attribute id="CATEG_TXT" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Projection_6" columnName="CATEG_TXT"/>
+    </attribute>
+    <attribute id="ANAME" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Projection_6" columnName="ANAME"/>
+    </attribute>
+    <attribute id="ACMNT_TXT" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Projection_6" columnName="ACMNT_TXT"/>
+    </attribute>
+    <attribute id="AWARD_TXT" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AWARD_TXT_1"/>
+      <keyMapping columnObjectName="Projection_6" columnName="AWARD_"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -250,44 +374,59 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="230" y="112"/>
+      <upperLeftCorner x="665" y="112"/>
     
       <rectangleSize width="160"/>
     </shape>
-    
   
     <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="113" y="661"/>
+      <upperLeftCorner x="301" y="546"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="721" y="546"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="323" y="661"/>
+      <upperLeftCorner x="932" y="546"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-72" y="318"/>
+      <upperLeftCorner x="511" y="546"/>
       <rectangleSize height="30" width="160"/>
     </shape>
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="546"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="665" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="232" y="501"/>
+      <upperLeftCorner x="512" y="341"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="146"/>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="394" y="107"/>
+      <rectangleSize width="141"/>
     </shape>
-    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="145"/>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="203" y="107"/>
+      <rectangleSize width="141"/>
     </shape>
-    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="208" y="305"/>
-      <rectangleSize height="30" width="160"/>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="586" y="150"/>
+      <rectangleSize width="100"/>
     </shape>
-    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="36" y="232"/>
-      <rectangleSize height="30" width="160"/>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="736" y="12"/>
+      <rectangleSize width="166"/>
     </shape>
-  </shapes>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="12" y="107"/>
+      <rectangleSize width="141"/>
+    </shape></shapes>
 </layout>
 </Calculation:scenario>

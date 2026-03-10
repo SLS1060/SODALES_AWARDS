@@ -8,6 +8,7 @@
 
 const cds = require('@sap/cds');
 const CryptoJS = require('../lib/crypto@4.1.1');
+const { executeHttpRequest } = require('@sap-cloud-sdk/http-client');
 
 function setValue(value) {
     if (value !== undefined && value !== null && value !== '') {
@@ -47,8 +48,6 @@ async function fetchPayload(req) {
 }
 
 
-const { executeHttpRequest } = require('@sap-cloud-sdk/http-client');
-
 /**
  * Function: createCMISFolder
  * Purpose:
@@ -60,18 +59,18 @@ const { executeHttpRequest } = require('@sap-cloud-sdk/http-client');
  */
 async function createCMISFolder(path, folderName) {
   try {
-    const DOC_INC_URL = process.env.DOC_INC_URL;
+    const DOC_URL = process.env.DOC_URL;
 
     // Send HTTP POST request to the CPI endpoint using the specified destination
     const response = await executeHttpRequest(
-      { destinationName: 'COW_INC_CMIS' },    // Destination configuration name in BTP
+      { destinationName: 'CMISCPI' },    // Destination configuration name in BTP
       { 
         method: 'POST',
-        url: DOC_INC_URL,
+        url: DOC_URL,
         headers: {
           'Content-Type': 'application/json',
           'FolderPath': path,
-          'FolderName': folderName
+          'FolderName': folderNames
         }
       },{
           fetchCsrfToken: false  // Prevents HEAD for CSRF

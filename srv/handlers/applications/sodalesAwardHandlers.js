@@ -40,7 +40,7 @@ async function AddAwards(req) {
             setValue(oAwardDetails.STATS),      // Status
             setValue(oAwardDetails.STATS_TXT),      // Status
             setValue(oAwardDetails.REPBY),      // Reported By
-            setValue(oAwardDetails.REPBY),      // Reported By NAME
+            setValue(oAwardDetails.RBYNM),      // Reported By NAME
             setValue(oAwardDetails.REPDT),      // Reported Date   
             setValue(oAwardDetails.AWRDT)       // Award Date
         ]);

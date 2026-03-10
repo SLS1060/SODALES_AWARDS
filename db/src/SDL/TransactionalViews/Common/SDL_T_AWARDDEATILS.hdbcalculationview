@@ -26,6 +26,9 @@
       <viewAttribute id="RBYNM"/>
     
       <viewAttribute id="STATS_TXT"/>
+    
+      <viewAttribute id="CNAME"/>
+      <viewAttribute id="ATPTH"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SDL_T_AWRDS"/>
@@ -81,7 +84,9 @@
   
     <attribute id="STATS_TXT" order="11" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Status text"/>
+  
       <keyMapping columnObjectName="Projection_1" columnName="STATS_TXT"/>
+  
     </attribute>
   </attributes>
   <calculatedAttributes/>

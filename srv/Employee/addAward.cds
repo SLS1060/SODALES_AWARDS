@@ -33,7 +33,7 @@ service awardsServiceEmployee {
     entity eqIOvkYQPikXwyJp as projection on SDL.T.ATTACHMENTDETAILS;
 
     //Landing Page
-    entity rtnkbleyMNoeRMiw as projection on SDL.T.LANDINGPAGE;
+    entity rtnkbleyMNoeRMiw as projection on SDL.T.EMPLOYEELANDINGPAGE;
 
     //add Award
     action b9q2fsan18bqxar0(D4OXYPALUYAIDNSO: String) returns String;
