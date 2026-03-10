@@ -13,7 +13,7 @@ const cds = require('@sap/cds');
 
 //Add Awards
 async function AddAwards(req) {
-    let oInput;
+    let oInput, returnObj;
     try {
 
         let result, oAwardId;
@@ -23,9 +23,7 @@ async function AddAwards(req) {
 
         //Extracting Payload
         let oAwardDetails = oInput.AwardDetails;
-        console.log(oAwardDetails.Attachments);
-        let Attachments = oAwardDetails.Attachments;
-
+       
         if (oAwardDetails.AWRID < 0 || !Number.isInteger(oAwardDetails.AWRID)) {
             throw new 'Invalid Award Id';
         }
@@ -66,21 +64,11 @@ async function AddAwards(req) {
             }
         }
 
-
-        if (Array.isArray(Attachments)) {
-            for (let i = 0; i < Attachments.length; i++) {
-                result = await cds.run(`CALL "prSdlCreateUpdateAttachments" (?,?,?,?,?,?,?)`, [
-                    setValue(Attachments[i].ATHID),    // Primary Key- Attachment Id
-                    setValue(oAwardId),             // Award ID
-                    setValue(Attachments[i].ATTNM),    // Attachment Name
-                    setValue(Attachments[i].OBJID),    // Object ID
-                    setValue(Attachments[i].TITLE),    // Document Title
-                    setValue(Attachments[i].URLDT)     // URL
-                ]);
-                oAttachId = result.OATHID;               // Output parameter
-                console.log("Attachment Id: ", oAttachId);
-            }
-        }
+        returnObj = {
+            "AWRID": oAwardId.toString(),
+            "AttachmentStatus": CMIS_Status || true,
+            "AttachmentPath": folderpath + "/" + filename,
+        };
     }
     catch (error) {
         return req.error({
@@ -139,8 +127,53 @@ async function AcceptReject(req) {
     }
 }
 
+
+async function createAttachment(req) {
+    let oInput, returnObj;
+    try {
+        let result;
+        oInput = await fetchPayload(req);
+        // Extracting Payload
+        let OAwardDetails_Attach = oInput.AwardDetails_Attach;
+        let Attachments = OAwardDetails_Attach.Attachments;
+
+        if (Array.isArray(Attachments)) {
+            for (let i = 0; i < Attachments.length; i++) {
+                result = await cds.run(`CALL "prSdlCreateUpdateAttachments" (?,?,?,?,?,?,?)`, [
+                    setValue(Attachments[i].ATHID),    // Primary Key- Attachment Id
+                    setValue(Attachments[i].AWRID),             // Award ID
+                    setValue(Attachments[i].ATTNM),    // Attachment Name
+                    setValue(Attachments[i].OBJID),    // Object ID
+                    setValue(Attachments[i].TITLE),    // Document Title
+                    setValue(Attachments[i].URLDT)     // URL
+                ]);
+                oAttachId = result.OATHID;               // Output parameter
+                console.log("Attachment Id: ", oAttachId);
+            }
+        }
+
+        returnObj = {
+            "Success": "Attachment added successfully.",
+            "Attachment ID": Attachments[0].AWRID
+        };
+
+        return JSON.stringify(returnObj);
+
+    } catch (error) {
+
+        return req.error({
+            code: 500,
+            message: error.toString()
+        });
+
+    }
+}
+
+
+
 module.exports = {
     AddAwards,
     DeleteAwardsAttachments,
-    AcceptReject
+    AcceptReject,
+    createAttachment
 }

@@ -20,4 +20,6 @@ module.exports = cds.service.impl(function () {
 
     this.on("qmU9hLZZckICSjDa",addAwards.AcceptReject);
 
+    this.on("T5qTMWJSg36f8E6y",addAwards.createAttachment);
+
 })

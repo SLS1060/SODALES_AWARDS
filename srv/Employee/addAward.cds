@@ -44,4 +44,6 @@ service awardsServiceEmployee {
 
     action qmU9hLZZckICSjDa(D4OXYPALUYAIDNSO: String) returns String;
 
+    action T5qTMWJSg36f8E6y(D4OXYPALUYAIDNSO: String) returns String;
+
 }
