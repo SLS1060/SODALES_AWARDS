@@ -10,6 +10,8 @@ const cds = require('@sap/cds');
 const CryptoJS = require('../lib/crypto@4.1.1');
 const { executeHttpRequest } = require('@sap-cloud-sdk/http-client');
 
+const { getDestination } = require('@sap-cloud-sdk/connectivity')
+
 function setValue(value) {
     if (value !== undefined && value !== null && value !== '') {
         return value;
@@ -70,7 +72,7 @@ async function createCMISFolder(path, folderName) {
         headers: {
           'Content-Type': 'application/json',
           'FolderPath': path,
-          'FolderName': folderNames
+          'FolderName': folderName
         }
       },{
           fetchCsrfToken: false  // Prevents HEAD for CSRF

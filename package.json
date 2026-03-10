@@ -5,10 +5,12 @@
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.15.9",
     "@cap-js/hana": "^2",
+    "@sap-cloud-sdk/connectivity": "^4.5.1",
     "@sap-cloud-sdk/http-client": "^4.5.1",
     "@sap/cds": "^9",
     "@sap/hdi-deploy": "^5.6.1",
     "@sap/xssec": "^4",
+    "dotenv": "^17.3.1",
     "express": "^4"
   },
   "devDependencies": {

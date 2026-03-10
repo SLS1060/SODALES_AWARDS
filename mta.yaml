@@ -27,6 +27,7 @@ modules:
     requires:
       - name: SODLS_INS_INTASS-db
       - name: SODALESAWARDS-auth
+      - name: Product1_CPIDestination
 
   - name: SODLS_INS_INTASS-db-deployer
     type: hdb
@@ -56,3 +57,8 @@ resources:
           credential-types:
             - "binding-secret"
             - "x509"
+  - name: Product1_CPIDestination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

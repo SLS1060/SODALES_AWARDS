@@ -48,27 +48,28 @@ async function AddAwards(req) {
         console.log("Award Id: ", oAwardId);
 
 
-        // result = await cds.run(`SELECT YEAR(CRTDT), MONTH(CRTDT) FROM SDL_T_AWRDS WHERE AWRID = ? `, [oAwardId]);
+        result = await cds.run(`SELECT YEAR(CRTDT), MONTH(CRTDT) FROM SDL_T_AWRDS WHERE AWRID = ? `, [oAwardId]);
 
-        // Year = Object.values(result[0])[0]
-        // Month = Object.values(result[0])[1]
+        Year = Object.values(result[0])[0]
+        Month = Object.values(result[0])[1]
 
-        // folderpath = Year;
-        // filename = "SDL_" + oAwardId.toString();
-        // if (oAwardDetails.AWRID === 0) {
-        //     //Logic to Create New Folder for New Incident 
-        //     CMIS_Status = await createCMISFolder(folderpath, filename);
-        //     if (CMIS_Status) {
-        //         await cds.run(`CALL prIncUpdateAttachmentFolderPath(?,?)`, [
-        //             oAwardId,
-        //             folderpath + "/" + filename]);
-        //     }
-        // }
+        folderpath = Year;
+        filename = "SDL_" + oAwardId.toString();
+        console.log(folderpath, filename);
+        if (oAwardDetails.AWRID === 0) {
+            //Logic to Create New Folder for New Incident 
+            CMIS_Status = await createCMISFolder(folderpath, filename);
+            if (CMIS_Status) {
+                await cds.run(`CALL prsDLUpdateAttachmentFolderPath(?,?)`, [
+                    oAwardId,
+                    folderpath + "/" + filename]);
+            }
+        }
 
 
         if (Array.isArray(Attachments)) {
             for (let i = 0; i < Attachments.length; i++) {
-                result = await cds.run(`CALL "prSdlCreateUpdateAttachments"(?,?,?,?,?,?,?)`, [
+                result = await cds.run(`CALL "prSdlCreateUpdateAttachments" (?,?,?,?,?,?,?)`, [
                     setValue(Attachments[i].ATHID),    // Primary Key- Attachment Id
                     setValue(oAwardId),             // Award ID
                     setValue(Attachments[i].ATTNM),    // Attachment Name
