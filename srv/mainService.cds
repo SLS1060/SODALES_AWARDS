@@ -24,4 +24,7 @@ service mainService{
     entity qfllxbGnRXlizI3G as projection on SDL.M.EMPLOYEEDETAILS
         where upper(USRID) = upper($user.id); // Replace with 'upper($user.id)' for dynamic selection
 
+    @readonly
+    entity Nl5EfDzrzfDLWJ5N as projection on SDL.M.GETASEKEY;
+
 }

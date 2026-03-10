@@ -6,7 +6,7 @@
 /* Functionality                : All post functions which are used for add Awards               */
 /*************************************************************************************************/
 
-const {setValue, validateField, fetchPayload } = require('../../utils/common');
+const {setValue, validateField, fetchPayload, createCMISFolder } = require('../../utils/common');
 
 // Importing cds
 const cds = require('@sap/cds');
@@ -30,21 +30,40 @@ async function AddAwards(req) {
             throw new 'Invalid Award Id';
         }
 
-        result = await cds.run(`CALL "prSdlCreateUpdateAwards"(?,?,?,?,?,?,?,?,?,?,?,?)`, [
+        result = await cds.run(`CALL "prSdlCreateUpdateAwards"(?,?,?,?,?,?,?,?,?,?,?,?,?)`, [
             setValue(oAwardDetails.AWRID),      // Primary Key Award Id
-            setValue(oAwardDetails.EMPID),      // Employee ID
             setValue(oAwardDetails.AWARD),      // Award
             setValue(oAwardDetails.ACMNT),      // URL
             setValue(oAwardDetails.CATEG),      // Award Category
             setValue(oAwardDetails.CNAME),      // Certification Name
             setValue(oAwardDetails.NOTES),      // Notes
             setValue(oAwardDetails.STATS),      // Status
+            setValue(oAwardDetails.STATS_TXT),      // Status
             setValue(oAwardDetails.REPBY),      // Reported By
+            setValue(oAwardDetails.REPBY),      // Reported By NAME
             setValue(oAwardDetails.REPDT),      // Reported Date   
             setValue(oAwardDetails.AWRDT)       // Award Date
         ]);
         oAwardId = result.OAWRID;               // Output parameter
         console.log("Award Id: ", oAwardId);
+
+
+        // result = await cds.run(`SELECT YEAR(CRTDT), MONTH(CRTDT) FROM SDL_T_AWRDS WHERE AWRID = ? `, [oAwardId]);
+
+        // Year = Object.values(result[0])[0]
+        // Month = Object.values(result[0])[1]
+
+        // folderpath = Year;
+        // filename = "SDL_" + oAwardId.toString();
+        // if (oAwardDetails.AWRID === 0) {
+        //     //Logic to Create New Folder for New Incident 
+        //     CMIS_Status = await createCMISFolder(folderpath, filename);
+        //     if (CMIS_Status) {
+        //         await cds.run(`CALL prIncUpdateAttachmentFolderPath(?,?)`, [
+        //             oAwardId,
+        //             folderpath + "/" + filename]);
+        //     }
+        // }
 
 
         if (Array.isArray(Attachments)) {
@@ -70,7 +89,7 @@ async function AddAwards(req) {
     }
 }
 
-async function DeleteAwards(req) {
+async function DeleteAwardsAttachments(req) {
     let oInput;
     try {
         let result;
@@ -78,9 +97,9 @@ async function DeleteAwards(req) {
         oInput = await fetchPayload(req);
 
         //Extracting Payload
-        let oAttachmentD = oInput.Attachments;
+        let oAwardDetails = oInput.oAwardDetails;
 
-         result = await cds.run(`CALL prSdlCreateUpdateAwards(?,?)`, [
+         result = await cds.run(`CALL "prSdlDeleteAttachments"(?,?)`, [
             setValue(oAttachmentD.AWRID),
             setValue(oAttachmentD.ATHID)
          ]);
@@ -93,7 +112,33 @@ async function DeleteAwards(req) {
     }
 }
 
+
+async function AcceptReject(req) {
+    let oInput;
+    try {
+        let result;
+        //Reading payload through req.data
+        oInput = await fetchPayload(req);
+
+        //Extracting Payload
+        let oA = oInput.Attachments;
+
+         result = await cds.run(`CALL prSdlUpdateAwardsStatus(?,?,?)`, [
+            setValue(oAwardDetails.AWRID),
+            setValue(oAwardDetails.STATS),
+            setValue(oAwardDetails.STATS_TXT)
+         ]);
+        }
+            catch (error) {
+         return req.error({
+            code: 500,
+            message: error.toString()
+         });
+    }
+}
+
 module.exports ={
     AddAwards,
-    DeleteAwards
+    DeleteAwardsAttachments,
+    AcceptReject
 }

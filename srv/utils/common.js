@@ -47,8 +47,47 @@ async function fetchPayload(req) {
 }
 
 
+const { executeHttpRequest } = require('@sap-cloud-sdk/http-client');
+
+/**
+ * Function: createCMISFolder
+ * Purpose:
+ * Sends a POST request to an SAP CPI (Cloud Platform Integration) endpoint to create a folder at a specified path 
+ * in a remote CMIS system. It uses a destination configuration named 'CPIDestination'.
+ *
+ * @param {string} path - The path where the folder should be created
+ * @param {string} folderName - The name of the folder to create
+ */
+async function createCMISFolder(path, folderName) {
+  try {
+    const DOC_INC_URL = process.env.DOC_INC_URL;
+
+    // Send HTTP POST request to the CPI endpoint using the specified destination
+    const response = await executeHttpRequest(
+      { destinationName: 'COW_INC_CMIS' },    // Destination configuration name in BTP
+      { 
+        method: 'POST',
+        url: DOC_INC_URL,
+        headers: {
+          'Content-Type': 'application/json',
+          'FolderPath': path,
+          'FolderName': folderName
+        }
+      },{
+          fetchCsrfToken: false  // Prevents HEAD for CSRF
+      });
+    return response.status === 201 ? true : false;
+  } catch (error) {
+    // Log the error with fallback for missing response object
+    console.error('Error folder creation : ', error.response ? error.response.data : error.message);
+    // throw error;
+  }
+}
+
+
 module.exports = {
     setValue,
     validateField,
-    fetchPayload
+    fetchPayload,
+    createCMISFolder
 }

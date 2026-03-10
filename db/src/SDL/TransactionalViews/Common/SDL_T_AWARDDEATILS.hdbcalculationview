@@ -13,7 +13,6 @@
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
-      <viewAttribute id="EMPID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
@@ -23,6 +22,10 @@
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ISDEL"/>
+    
+      <viewAttribute id="RBYNM"/>
+    
+      <viewAttribute id="STATS_TXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SDL_T_AWRDS"/>
@@ -36,41 +39,49 @@
       <descriptions defaultDescription="Award ID - Primary Key"/>
       <keyMapping columnObjectName="Projection_1" columnName="AWRID"/>
     </attribute>
-    <attribute id="EMPID" order="2" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Employee ID"/>
-      <keyMapping columnObjectName="Projection_1" columnName="EMPID"/>
-    </attribute>
-    <attribute id="AWARD" order="3" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AWARD" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AWARD"/>
       <keyMapping columnObjectName="Projection_1" columnName="AWARD"/>
     </attribute>
-    <attribute id="ACMNT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ACMNT" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Achivement (Dropdown)"/>
       <keyMapping columnObjectName="Projection_1" columnName="ACMNT"/>
     </attribute>
-    <attribute id="CATEG" order="5" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CATEG" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Award Category"/>
       <keyMapping columnObjectName="Projection_1" columnName="CATEG"/>
     </attribute>
-    <attribute id="NOTES" order="6" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="NOTES" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Notes"/>
       <keyMapping columnObjectName="Projection_1" columnName="NOTES"/>
     </attribute>
-    <attribute id="STATS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="STATS" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Status"/>
       <keyMapping columnObjectName="Projection_1" columnName="STATS"/>
     </attribute>
-    <attribute id="REPBY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="REPBY" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Reported By"/>
       <keyMapping columnObjectName="Projection_1" columnName="REPBY"/>
     </attribute>
-    <attribute id="REPDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="REPDT" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Reported Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="REPDT"/>
     </attribute>
-    <attribute id="AWRDT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AWRDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Award Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="AWRDT"/>
+    </attribute>
+  
+    <attribute id="RBYNM" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reported By Name"/>
+  
+      <keyMapping columnObjectName="Projection_1" columnName="RBYNM"/>
+  
+    </attribute>
+  
+    <attribute id="STATS_TXT" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Status text"/>
+      <keyMapping columnObjectName="Projection_1" columnName="STATS_TXT"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>

@@ -4,41 +4,44 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="SDL_M_ARDNM">
-    <resourceUri>SDL_M_ARDNM</resourceUri>
+  <DataSource id="SDL_M_MSTDT">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
   </DataSource>
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
     <viewAttributes>
-      <viewAttribute id="ANMID"/>
       <viewAttribute id="UNQID"/>
-      <viewAttribute id="ANAME"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
       <viewAttribute id="ISDEL"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="SDL_M_ARDNM"/>
-    <filter>&quot;ISDEL&quot;='0'</filter>
+    <input node="SDL_M_MSTDT"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot; = 'Award Name'</filter>
   </calculationView>
 </calculationViews>
 
 <logicalModel id="Projection_1">
   <attributes>
-    <attribute id="ANAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Award Name"/>
-      <keyMapping columnObjectName="Projection_1" columnName="ANAME"/>
+    <attribute id="TYVAL" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Type Value"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TYVAL"/>
+    </attribute>
+    <attribute id="TXVAL" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TXVAL"/>
+    </attribute>
+    <attribute id="ISDEL" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Is Deleted Flag (1=True/0=False)"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ISDEL"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="ANMID" order="1" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="Primary Key"/>
-      <measureMapping columnObjectName="Projection_1" columnName="ANMID"/>
-      <exceptionAggregationMetadata/>
-    </measure>
-    <measure id="UNQID" order="2" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="Unique Id"/>
+    <measure id="UNQID" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Unique ID (SEQ)"/>
       <measureMapping columnObjectName="Projection_1" columnName="UNQID"/>
       <exceptionAggregationMetadata/>
     </measure>

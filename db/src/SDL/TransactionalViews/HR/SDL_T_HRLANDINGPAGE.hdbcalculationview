@@ -19,7 +19,6 @@
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
-      <viewAttribute id="EMPID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
@@ -31,6 +30,10 @@
       <viewAttribute id="ISDEL"/>
     
       <viewAttribute id="CNAME"/>
+    
+      <viewAttribute id="RBYNM"/>
+    
+      <viewAttribute id="STATS_TXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SDL_T_AWRDS"/>
@@ -50,7 +53,6 @@
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
-      <viewAttribute id="EMPID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
@@ -61,6 +63,10 @@
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ISDEL"/>
       <viewAttribute id="ANAME"/>
+    
+      <viewAttribute id="RBYNM"/>
+    
+      <viewAttribute id="STATS_TXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Projection_4$$$$SDL_T_AWRDS$$">
@@ -71,7 +77,6 @@
   <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
-      <viewAttribute id="EMPID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
@@ -82,12 +87,13 @@
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ANMID"/>
       <viewAttribute id="ANAME"/>
+      <viewAttribute id="RBYNM"/>
+      <viewAttribute id="STATS_TXT"/>
       <viewAttribute hidden="true" id="JOIN$AWARD$UNQID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Projection_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRID" source="AWRID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EMPID" source="EMPID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
@@ -96,6 +102,8 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="REPBY" source="REPBY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="STATS_TXT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AWARD$UNQID" source="AWARD"/>
     </input>
     <input node="Projection_3">
@@ -109,7 +117,6 @@
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
-      <viewAttribute id="EMPID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
@@ -119,6 +126,10 @@
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ANAME"/>
+    
+      <viewAttribute id="RBYNM"/>
+    
+      <viewAttribute id="STATS_TXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1"/>
@@ -126,7 +137,6 @@
   <calculationView xsi:type="Calculation:UnionView" id="Union_1">
     <viewAttributes>
       <viewAttribute id="AWRID"/>
-      <viewAttribute id="EMPID"/>
       <viewAttribute id="AWARD"/>
       <viewAttribute id="ACMNT"/>
       <viewAttribute id="CATEG"/>
@@ -136,11 +146,14 @@
       <viewAttribute id="REPDT"/>
       <viewAttribute id="AWRDT"/>
       <viewAttribute id="ANAME"/>
+    
+      <viewAttribute id="RBYNM"/>
+    
+      <viewAttribute id="STATS_TXT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Projection_4" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRID" source="AWRID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EMPID" source="EMPID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
@@ -150,10 +163,13 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="STATS_TXT"/>
     </input>
     <input node="Projection_2" emptyUnionBehavior="NO_ROW">
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRID" source="AWRID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EMPID" source="EMPID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWARD" source="AWARD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ACMNT" source="ACMNT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CATEG" source="CATEG"/>
@@ -163,6 +179,10 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="REPDT" source="REPDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="AWRDT" source="AWRDT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ANAME" source="ANAME"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="RBYNM" source="RBYNM"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS_TXT" source="STATS_TXT"/>
     </input>
   </calculationView>
 </calculationViews>
@@ -173,45 +193,53 @@
       <descriptions defaultDescription="Award ID - Primary Key"/>
       <keyMapping columnObjectName="Union_1" columnName="AWRID"/>
     </attribute>
-    <attribute id="EMPID" order="2" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Employee ID"/>
-      <keyMapping columnObjectName="Union_1" columnName="EMPID"/>
-    </attribute>
-    <attribute id="AWARD" order="3" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AWARD" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="AWARD"/>
       <keyMapping columnObjectName="Union_1" columnName="AWARD"/>
     </attribute>
-    <attribute id="ACMNT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ACMNT" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Achivement (Dropdown)"/>
       <keyMapping columnObjectName="Union_1" columnName="ACMNT"/>
     </attribute>
-    <attribute id="CATEG" order="5" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CATEG" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Award Category"/>
       <keyMapping columnObjectName="Union_1" columnName="CATEG"/>
     </attribute>
-    <attribute id="NOTES" order="6" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="NOTES" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Notes"/>
       <keyMapping columnObjectName="Union_1" columnName="NOTES"/>
     </attribute>
-    <attribute id="STATS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="STATS" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Status"/>
       <keyMapping columnObjectName="Union_1" columnName="STATS"/>
     </attribute>
-    <attribute id="REPBY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="REPBY" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Reported By"/>
       <keyMapping columnObjectName="Union_1" columnName="REPBY"/>
     </attribute>
-    <attribute id="REPDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="REPDT" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Reported Date"/>
       <keyMapping columnObjectName="Union_1" columnName="REPDT"/>
     </attribute>
-    <attribute id="AWRDT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="AWRDT" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Award Date"/>
       <keyMapping columnObjectName="Union_1" columnName="AWRDT"/>
     </attribute>
-    <attribute id="ANAME" order="11" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ANAME" order="10" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Certification Name"/>
       <keyMapping columnObjectName="Union_1" columnName="ANAME"/>
+    </attribute>
+  
+    <attribute id="RBYNM" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reported By Name"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="RBYNM"/>
+  
+    </attribute>
+  
+    <attribute id="STATS_TXT" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Status text"/>
+      <keyMapping columnObjectName="Union_1" columnName="STATS_TXT"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>

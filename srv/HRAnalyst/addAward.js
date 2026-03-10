@@ -16,6 +16,8 @@ module.exports = cds.service.impl(function () {
     // Add new Award (main operation)
     this.on("b9q2fsan18bqxar0", addAwards.AddAwards);
 
-    this.on("MenppOLcoVyeMVTg",addAwards.DeleteAwards);
+    this.on("MenppOLcoVyeMVTg",addAwards.DeleteAwardsAttachments);
+
+    this.on("qmU9hLZZckICSjDa",addAwards.AcceptReject);
 
 })

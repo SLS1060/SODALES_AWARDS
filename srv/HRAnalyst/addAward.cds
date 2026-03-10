@@ -42,4 +42,6 @@ service awardsServiceHRAnalyst {
 
     action MenppOLcoVyeMVTg(D4OXYPALUYAIDNSO: String) returns String;
 
+    action qmU9hLZZckICSjDa(D4OXYPALUYAIDNSO: String) returns String;
+
 }
