@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_M_RPLEWISEAPPPATH" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="SDL_M_RPLEWISEAPPPATH"/>
+<localVariables>
+  <variable id="INRGUID" parameter="true">
+    <descriptions defaultDescription="INRGUID"/>
+    <variableProperties datatype="NVARCHAR" length="30" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SDL_M_ROLPTH">
+    <resourceUri>SDL_M_ROLPTH</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="SDL_M_ROLPTH" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="RLPID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Unique Id"/>
+      <keyMapping columnObjectName="SDL_M_ROLPTH" columnName="RLPID"/>
+    </attribute>
+    <attribute id="ROLPH" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Role path"/>
+      <keyMapping columnObjectName="SDL_M_ROLPTH" columnName="ROLPH"/>
+    </attribute>
+    <attribute id="RGUID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GUID"/>
+      <keyMapping columnObjectName="SDL_M_ROLPTH" columnName="RGUID"/>
+    </attribute>
+    <attribute id="REBHF" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Reporting on behalf flag"/>
+      <keyMapping columnObjectName="SDL_M_ROLPTH" columnName="REBHF"/>
+    </attribute>
+    <attribute id="ISDEL" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Is deleted"/>
+      <keyMapping columnObjectName="SDL_M_ROLPTH" columnName="ISDEL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+
+  <filter>&quot;ISDEL&quot;='0' AND &quot;RGUID&quot; = '$$INRGUID$$'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

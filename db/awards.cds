@@ -79,6 +79,19 @@ context M {
             DIVSN : String(30)  @title: 'DIVSN: Department Division';
             ISDEL : String(1)   @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
     }
+
+
+    // Rolewise Application path stored which are used for sementic id at BTP
+    @cds.persistence.exists
+    @cds.persistence.calcview
+    entity RPLEWISEAPPPATH(INRGUID: String(20)) {
+        key RLPID : Integer;
+            ROLPH : String(250);
+            RGUID : String(20);
+            REBHF : Integer;
+            ISDEL : String(1);
+    }
+
 }
 
 context T {

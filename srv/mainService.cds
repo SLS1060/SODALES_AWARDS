@@ -14,5 +14,14 @@ using SDL from '../db/awards';
 
 
 service mainService{
+      // View for Role-wise Application Path, parameterized by INRGUID
+    // // @readonly
+    // view ASDRToWpy6NGKkoe(INRGUID : String(30)) 
+    //     as select from SDL.M.RPLEWISEAPPPATH ( INRGUID : :INRGUID ) { * };
+
+    // Entity for querying a fixed employee 
+    @readonly
+    entity qfllxbGnRXlizI3G as projection on SDL.M.EMPLOYEEDETAILS
+        where upper(USRID) = upper($user.id); // Replace with 'upper($user.id)' for dynamic selection
 
 }
