@@ -105,7 +105,7 @@ async function DeleteAwardsAttachments(req) {
         ]);
     }
     catch (error) {
-        
+
         return req.error({
             code: 500,
             message: error.toString()
@@ -122,8 +122,8 @@ async function AcceptReject(req) {
         oInput = await fetchPayload(req);
 
         //Extracting Payload
-        let oA = oInput.Attachments;
-
+        let oAwardDetails = oInput.AwardDetails;
+    
         result = await cds.run(`CALL prSdlUpdateAwardsStatus(?,?,?)`, [
             setValue(oAwardDetails.AWRID),
             setValue(oAwardDetails.STATS),

@@ -10,3 +10,8 @@ Content-Type: application/json
 {"D4OXYPALUYAIDNSO":"{\"AwardDetails\":{\"AWRID\":0,\"EMPID\":\"SLS1379\",\"AWARD\":10,\"ACMNT\":1, \"CATEG\":27, \"NOTES\":\"Notes\", \"STATS\":31, \"REPBY\":\"SLS1160\",\"REPDT\":\"2026-03-06\",\"AWRDT\":\"2026-03-06\", \"Attachments\": [{\"ATHID\":0,\"ATTNM\":\"Attachment Name\",\"TITLE\":\"Title\",\"URLDT\":\"URL1\" }, {\"ATHID\":0,\"ATTNM\":\"Attachment Name2\",\"TITLE\":\"Title2\",\"URLDT\":\"URL2\" }]}}"}
  
 ###
+
+POST http://localhost:4004/odata/v4/awards-service-employee/qmU9hLZZckICSjDa
+Content-Type: application/json
+
+{"D4OXYPALUYAIDNSO": "{\"AwardDetails\":{\"AWRID\":1,\"STATS\":32,\"STATS_TXT\":\"Reject\"}}"}

@@ -10,7 +10,7 @@
 PROCEDURE prSdlUpdateAwardsStatus ( 
     IN  AWRID  BIGINT,            -- Award ID
     IN  STATS  INTEGER,           -- flag
-    IN  STATS_TXT  NVARCHAR(1000)           -- flag
+    IN  STATS_TXT  NVARCHAR(250)           -- flag
 )
    LANGUAGE SQLSCRIPT
    SQL SECURITY INVOKER
