@@ -10,8 +10,8 @@ PROCEDURE "prSdlCreateUpdateAttachments"(
     IN  ATHID  BIGINT,            -- Attachment ID
     IN  AWRID  INTEGER,           -- Award ID
     IN  ATTNM  NVARCHAR(250),     -- Attachment Name
-    IN  TITLE  NVARCHAR(250),     -- Document Title
     IN  OBJID  NVARCHAR(50),      -- Object ID
+    IN  TITLE  NVARCHAR(250),     -- Document Title
     IN  URLDT  NVARCHAR(500),     -- URL
     OUT OATHID BIGINT             -- Output Parameter
 )
