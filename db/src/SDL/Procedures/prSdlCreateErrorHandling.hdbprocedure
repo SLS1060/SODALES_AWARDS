@@ -1,0 +1,26 @@
+/************************************* Project : Sodales Award **************************************/
+/* Developer Name 			  	: Sanjyot Phadatare										            */
+/* Date      					: 06/03/2026	                                                    */
+/* Application Name             : Add Awards                                                        */
+/* Procedure Name 				: prSdlCreateUpdateAwards.hdbprocedure			                    */
+/* Functionality                : To create and update Awards                                       */
+/****************************************************************************************************/
+PROCEDURE prSdlCreateErrorHandling ( 
+    
+     IN	APPNM	NVARCHAR(200),	-- Application name
+     IN	SRVNM	NVARCHAR(200),	-- Service name
+     IN	PLOAD	CLOB,		    -- Payload
+     IN	ERTXT	CLOB,		    -- Error text
+     IN CLFRM   NVARCHAR(5)     -- Service Function Called From UI/DB
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER 
+   
+    
+AS
+BEGIN
+
+    INSERT INTO SDL_T_ERLOG (APPNM,SRVNM,PLOAD,ERTXT,MDLNM,USRID,ISDEL,CRTBY,CRTDT,CRTTM,CLFRM) 
+    VALUES(APPNM,SRVNM,PLOAD,ERTXT,'Awards',SESSION_CONTEXT('APPLICATIONUSER'),'0',SESSION_CONTEXT('APPLICATIONUSER'),CURRENT_DATE,CURRENT_TIME,CLFRM);
+
+END

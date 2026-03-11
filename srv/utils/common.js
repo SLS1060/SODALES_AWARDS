@@ -84,11 +84,32 @@ async function createCMISFolder(path, folderName) {
     // throw error;
   }
 }
+async function createErrorLog(APPNM, SRVNM, PYLOD, ERROR) {
+    try {
+        const tx = cds.tx();
+        //Procedure for updating the Sequence Number
+        result = await tx.run(`CALL prSdlCreateErrorHandling(?,?,?,?,?)`, [setValue(APPNM), setValue(SRVNM), setValue(PYLOD), setValue(ERROR), 'DB']);
+        await tx.commit();
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function createAuditLog(AWRID, REFID, RTYPE, SRVNM, PYLOD) {
+    try {
+        //Procedure for updating the Sequence Number
+        result = await cds.run(`CALL prSdlCreateAuditLog(?,?,?,?,?)`, [setValue(AWRID), setValue(REFID), setValue(RTYPE), setValue(SRVNM), setValue(PYLOD)]);
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 module.exports = {
     setValue,
     validateField,
     fetchPayload,
-    createCMISFolder
+    createCMISFolder,
+    createErrorLog,
+    createAuditLog
 }
