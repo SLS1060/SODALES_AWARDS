@@ -6,11 +6,13 @@
 /* Functionality                : All post functions which are used for add Awards               */
 /*************************************************************************************************/
 
-const { setValue, validateField, fetchPayload, createCMISFolder } = require('../../utils/common');
+const { setValue, validateField, fetchPayload, createCMISFolder,createErrorLog,createAuditLog } = require('../../utils/common');
 
 // Importing cds
 const cds = require('@sap/cds');
 
+// Importing constant values
+const constants = require('../../utils/constants');
 //Add Awards
 async function AddAwards(req) {
     let oInput, returnObj;
@@ -23,13 +25,9 @@ async function AddAwards(req) {
 
         //Extracting Payload
         let oAwardDetails = oInput.AwardDetails;
-<<<<<<< HEAD
-       
-=======
-        console.log(oAwardDetails.Attachments);
-        let Attachments = oAwardDetails.Attachments;
+        //console.log(oAwardDetails.Attachments);
+        // let Attachments = oAwardDetails.Attachments;
 
->>>>>>> 021ab2b (Error Log added)
         if (oAwardDetails.AWRID < 0 || !Number.isInteger(oAwardDetails.AWRID)) {
             throw new 'Invalid Award Id';
         }
@@ -70,6 +68,7 @@ async function AddAwards(req) {
             }
         }
 
+        await createAuditLog(oAwardId, oAwardId, 'Award Id', 'addAwards', JSON.stringify(oInput));
         returnObj = {
             "AWRID": oAwardId.toString(),
             "AttachmentStatus": CMIS_Status || true,
@@ -77,10 +76,7 @@ async function AddAwards(req) {
         };
     }
     catch (error) {
-<<<<<<< HEAD
-=======
-        await createErrorLog(constants.APP_NAME_REPORT, 'DeletePassenger', JSON.stringify(oInput), error.toString());
->>>>>>> 021ab2b (Error Log added)
+        await createErrorLog(constants.APP_NAME_REPORT, 'addAwards', JSON.stringify(oInput), error.toString());
         return req.error({
             code: 500,
             message: error.toString()
@@ -102,13 +98,16 @@ async function DeleteAwardsAttachments(req) {
             setValue(oAttachmentD.AWRID),
             setValue(oAttachmentD.ATHID)
         ]);
+
+        await createAuditLog(oAttachmentD.AWRID, oAttachmentD.ATHID, 'Attachment Id', 'DeleteAwardsAttachments', JSON.stringify(oInput));
+        returnObj = {
+            "Success": "Awards Attachment Deleted Successfully"
+        }
+
+        return JSON.stringify(returnObj);
     }
     catch (error) {
-<<<<<<< HEAD
-
-=======
-        await createErrorLog(constants.APP_NAME_REPORT, 'DeletePassenger', JSON.stringify(oInput), error.toString());
->>>>>>> 021ab2b (Error Log added)
+        await createErrorLog(constants.APP_NAME_REPORT, 'DeleteAwardsAttachments', JSON.stringify(oInput), error.toString());
         return req.error({
             code: 500,
             message: error.toString()
@@ -125,24 +124,24 @@ async function AcceptReject(req) {
         oInput = await fetchPayload(req);
 
         //Extracting Payload
-<<<<<<< HEAD
         let oAwardDetails = oInput.AwardDetails;
-    
-=======
-        let oA = oInput.Attachments;
 
->>>>>>> 021ab2b (Error Log added)
         result = await cds.run(`CALL prSdlUpdateAwardsStatus(?,?,?)`, [
             setValue(oAwardDetails.AWRID),
             setValue(oAwardDetails.STATS),
             setValue(oAwardDetails.STATS_TXT)
         ]);
+        await createAuditLog(oAwardDetails.AWRID, oAwardDetails.AWRID, 'Award Id', 'AcceptReject', JSON.stringify(oInput));
+
+        returnObj = {
+            "Success": "Success"
+        };
+
+        return JSON.stringify(returnObj);
+
     }
     catch (error) {
-<<<<<<< HEAD
-=======
-        await createErrorLog(constants.APP_NAME_REPORT, 'DeletePassenger', JSON.stringify(oInput), error.toString());
->>>>>>> 021ab2b (Error Log added)
+        await createErrorLog(constants.APP_NAME_REPORT, 'AcceptReject', JSON.stringify(oInput), error.toString());
         return req.error({
             code: 500,
             message: error.toString()
@@ -150,7 +149,6 @@ async function AcceptReject(req) {
     }
 }
 
-<<<<<<< HEAD
 
 async function createAttachment(req) {
     let oInput, returnObj;
@@ -175,7 +173,8 @@ async function createAttachment(req) {
                 console.log("Attachment Id: ", oAttachId);
             }
         }
-
+        await createAuditLog(Attachments[0].AWRID, oAttachId, 'Attachment Id', 'createAttachment', JSON.stringify(oInput));
+        
         returnObj = {
             "Success": "Attachment added successfully.",
             "Attachment ID": Attachments[0].AWRID
@@ -184,7 +183,7 @@ async function createAttachment(req) {
         return JSON.stringify(returnObj);
 
     } catch (error) {
-
+        await createErrorLog(constants.APP_NAME_REPORT, 'createAttachment', JSON.stringify(oInput), error.toString());
         return req.error({
             code: 500,
             message: error.toString()
@@ -195,8 +194,6 @@ async function createAttachment(req) {
 
 
 
-=======
->>>>>>> 021ab2b (Error Log added)
 module.exports = {
     AddAwards,
     DeleteAwardsAttachments,

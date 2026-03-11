@@ -132,6 +132,7 @@ context T {
             TITLE : String(250) @title: 'TITLE: Document Title';
             OBJID : String(50)  @title: 'OBJID: Object ID';
             URLDT : String(500) @title: 'URLDT: URL';
+            
     }
 
     @cds.persistence.exists
@@ -155,6 +156,8 @@ context T {
             ANAME     : String(1000) @title: 'ANAME: Text Value';
             ACMNT_TXT : String(1000) @title: 'ACMNT_TXT: Text Value';
             AWARD_TXT : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
+            eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
+                                   on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
 
     @cds.persistence.exists
@@ -178,6 +181,8 @@ context T {
             ANAME     : String(1000) @title: 'ANAME: Text Value';
             ACMNT_TXT : String(1000) @title: 'ACMNT_TXT: Text Value';
             AWARD_TXT : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
+            eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
+                                   on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
 
     @cds.persistence.exists
@@ -201,5 +206,7 @@ context T {
             ANAME     : String(1000) @title: 'ANAME: Text Value';
             ACMNT_TXT : String(1000) @title: 'ACMNT_TXT: Text Value';
             AWARD_TXT : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
+            eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
+                                   on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
 }

@@ -5,7 +5,7 @@
 /* Procedure Name 				: prSdlCreateUpdateAwards.hdbprocedure			                    */
 /* Functionality                : To create and update Awards                                       */
 /****************************************************************************************************/
-PROCEDURE prIncCreateErrorHandling ( 
+PROCEDURE prSdlCreateErrorHandling ( 
     
      IN	APPNM	NVARCHAR(200),	-- Application name
      IN	SRVNM	NVARCHAR(200),	-- Service name

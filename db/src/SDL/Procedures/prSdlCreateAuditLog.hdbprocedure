@@ -1,0 +1,20 @@
+PROCEDURE prSdlCreateAuditLog ( 
+    
+     IN  AWRID   INTEGER,          -- Award Id
+     IN	 REFID	INTEGER,		   -- Unique refrence/foreign id
+     IN	 RTYPE	NVARCHAR(100),	   -- Type  of Refrence
+     IN	 SRVNM	NVARCHAR(200),	   -- Service name
+    -- IN	 VIENM	NVARCHAR(50),	   -- View name
+     IN  PLOAD   CLOB              -- Payload
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER  
+    
+-- READS SQL DATA 
+AS
+BEGIN
+
+    INSERT INTO SDL_T_AULOG (AWRID,REFID,RTYPE,SRVNM,PLOAD,ISDEL,CRTBY,CRTDT,CRTTM) 
+                                VALUES (AWRID,REFID,RTYPE,SRVNM,PLOAD,'0',SESSION_CONTEXT('APPLICATIONUSER'),CURRENT_DATE,CURRENT_TIME);
+ 
+END
