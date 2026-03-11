@@ -159,8 +159,8 @@ async function createAttachment(req) {
         let result;
         oInput = await fetchPayload(req);
         // Extracting Payload
-        let OAwardDetails_Attach = oInput.AwardDetails_Attach;
-        let Attachments = OAwardDetails_Attach.Attachments;
+        let Attachments = oInput.AwardDetails_Attach;
+        // let Attachments = OAwardDetails_Attach.Attachments;
 
         if (Array.isArray(Attachments)) {
             for (let i = 0; i < Attachments.length; i++) {
