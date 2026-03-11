@@ -67,6 +67,7 @@ async function AddAwards(req) {
                     folderpath + "/" + filename]);
             }
         }
+            
 
         await createAuditLog(oAwardId, oAwardId, 'Award Id', 'addAwards', JSON.stringify(oInput));
         returnObj = {
