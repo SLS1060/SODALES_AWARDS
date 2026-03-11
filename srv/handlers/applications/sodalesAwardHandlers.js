@@ -23,7 +23,13 @@ async function AddAwards(req) {
 
         //Extracting Payload
         let oAwardDetails = oInput.AwardDetails;
+<<<<<<< HEAD
        
+=======
+        console.log(oAwardDetails.Attachments);
+        let Attachments = oAwardDetails.Attachments;
+
+>>>>>>> 021ab2b (Error Log added)
         if (oAwardDetails.AWRID < 0 || !Number.isInteger(oAwardDetails.AWRID)) {
             throw new 'Invalid Award Id';
         }
@@ -71,6 +77,10 @@ async function AddAwards(req) {
         };
     }
     catch (error) {
+<<<<<<< HEAD
+=======
+        await createErrorLog(constants.APP_NAME_REPORT, 'DeletePassenger', JSON.stringify(oInput), error.toString());
+>>>>>>> 021ab2b (Error Log added)
         return req.error({
             code: 500,
             message: error.toString()
@@ -94,7 +104,11 @@ async function DeleteAwardsAttachments(req) {
         ]);
     }
     catch (error) {
+<<<<<<< HEAD
 
+=======
+        await createErrorLog(constants.APP_NAME_REPORT, 'DeletePassenger', JSON.stringify(oInput), error.toString());
+>>>>>>> 021ab2b (Error Log added)
         return req.error({
             code: 500,
             message: error.toString()
@@ -111,8 +125,13 @@ async function AcceptReject(req) {
         oInput = await fetchPayload(req);
 
         //Extracting Payload
+<<<<<<< HEAD
         let oAwardDetails = oInput.AwardDetails;
     
+=======
+        let oA = oInput.Attachments;
+
+>>>>>>> 021ab2b (Error Log added)
         result = await cds.run(`CALL prSdlUpdateAwardsStatus(?,?,?)`, [
             setValue(oAwardDetails.AWRID),
             setValue(oAwardDetails.STATS),
@@ -120,6 +139,10 @@ async function AcceptReject(req) {
         ]);
     }
     catch (error) {
+<<<<<<< HEAD
+=======
+        await createErrorLog(constants.APP_NAME_REPORT, 'DeletePassenger', JSON.stringify(oInput), error.toString());
+>>>>>>> 021ab2b (Error Log added)
         return req.error({
             code: 500,
             message: error.toString()
@@ -127,6 +150,7 @@ async function AcceptReject(req) {
     }
 }
 
+<<<<<<< HEAD
 
 async function createAttachment(req) {
     let oInput, returnObj;
@@ -171,6 +195,8 @@ async function createAttachment(req) {
 
 
 
+=======
+>>>>>>> 021ab2b (Error Log added)
 module.exports = {
     AddAwards,
     DeleteAwardsAttachments,

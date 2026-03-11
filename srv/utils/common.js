@@ -84,11 +84,22 @@ async function createCMISFolder(path, folderName) {
     // throw error;
   }
 }
+async function createErrorLog(APPNM, SRVNM, PYLOD, ERROR) {
+    try {
+        const tx = cds.tx();
+        //Procedure for updating the Sequence Number
+        result = await tx.run(`CALL prIncCreateErrorHandling(?,?,?,?,?)`, [setValue(APPNM), setValue(SRVNM), setValue(PYLOD), setValue(ERROR), 'DB']);
+        await tx.commit();
+    } catch (error) {
+        throw error;
+    }
+}
 
 
 module.exports = {
     setValue,
     validateField,
     fetchPayload,
-    createCMISFolder
+    createCMISFolder,
+    createErrorLog
 }
