@@ -8,7 +8,7 @@
     // "tab",
     // "tsv"
   ],
-  "SAP HANA Database Artifacts.lastSelectedTargetPath": "/home/user/projects/SODALES_AWARDS/db/src/SDL/TransactionalTables",
+  "SAP HANA Database Artifacts.lastSelectedTargetPath": "/home/user/projects/SODALES_AWARDS/db/src/SDL/MasterViews",
   "SAP HANA SQLScript LSP.URL": "https://cf-ca10.cf.hana-tooling.ingress.orchestration.prod-ca10.hanacloud.ondemand.com/hrtt-service",
   "SAP HANA SQLScript LSP.XsAdvancedHrttServiceUrl": "",
   "SAP HANA Project Explorer.bind.confirm existing service": false,

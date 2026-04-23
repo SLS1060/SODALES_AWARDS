@@ -23,7 +23,7 @@ service awardsServiceHR {
     entity ENbVtinaaxWjdJpl as projection on SDL.M.AWARDDATA;
 
     // Employee Data
-    entity bHYFoVGEpHMsvbyX as projection on SDL.M.EMPLOYEEDETAILS;
+   entity bHYFoVGEpHMsvbyX as projection on SDL.M.EMPLOYEEDETAILS;
 
 
     // Award Details

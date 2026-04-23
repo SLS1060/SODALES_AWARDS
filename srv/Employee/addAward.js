@@ -10,8 +10,16 @@ const cds = require('@sap/cds');
 
 const addAwards = require('../handlers/applications/sodalesAwardHandlers');
 
+const { checkUserRateLimiter } = require('../middleware/rateLimitChecker');
+const { isHRA } = require('../handlers/roles/roleshandler');
+
 
 module.exports = cds.service.impl(function () {
+
+    this.before("*",isHRA);
+
+    //Check RateLimit
+    this.before("*", checkUserRateLimiter);
 
     // Add new Award (main operation)
     this.on("b9q2fsan18bqxar0", addAwards.AddAwards);

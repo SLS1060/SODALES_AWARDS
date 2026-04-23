@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_M_TRAININGTYPE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SDL_M_TRAININGTYPE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SDL_M_MSTDT">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SDL_M_MSTDT"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot; = 'Training Type'</filter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="UNQID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Unique ID (SEQ)"/>
+      <keyMapping columnObjectName="Projection_1" columnName="UNQID"/>
+    </attribute>
+    <attribute id="TYVAL" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Type Value"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TYVAL"/>
+    </attribute>
+    <attribute id="TXVAL" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TXVAL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="207"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

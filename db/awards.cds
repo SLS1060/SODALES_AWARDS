@@ -73,8 +73,8 @@ context M {
             STRET : String(250) @title: 'STRET: Street';
             STATE : String(250) @title: 'STATE: State';
             ZIPCD : String(20)  @title: 'ZIPCD: Zipcode';
-            BIRDT : String(50)        @title: 'BIRDT: Date Of Birth';
-            HIRDT : String(50)        @title: 'HIRDT: Hired Date';
+            BIRDT : String(50)  @title: 'BIRDT: Date Of Birth';
+            HIRDT : String(50)  @title: 'HIRDT: Hired Date';
             EINDT : Integer     @title: 'EINDT: EIN';
             POSIT : String(500) @title: 'POSIT: Position';
             DIVSN : String(30)  @title: 'DIVSN: Department Division';
@@ -102,23 +102,38 @@ context M {
             ASEKY : String(250);
     }
 
+    @cds.persistence.exists
+    @cds.persistence.calcview
+    entity TRAININGTYPE {
+        key UNQID : Integer      @title: 'UNQID: Unique ID (SEQ)';
+            TYVAL : String(100)  @title: 'TYVAL: Type Value';
+            TXVAL : String(1000) @title: 'TXVAL: Text Value';
+    }
+
+    @cds.persistence.exists
+    @cds.persistence.calcview
+    entity TRAININGROLE {
+        key TYVAL : String(100)  @title: 'TYVAL: Type Value';
+            UNQID : Integer      @title: 'UNQID: Unique ID (SEQ)';
+        key TXVAL : String(1000) @title: 'TXVAL: Text Value';
+    }
 }
 
 context T {
     @cds.persistence.exists
     @cds.persistence.calcview
     entity AWARDDEATILS {
-        key AWRID     : Integer64    @title: 'AWRID: Award ID - Primary Key';
-            AWARD     : Integer      @title: 'AWARD: AWARD';
-            ACMNT     : Integer      @title: 'ACMNT: Achivement (Dropdown)';
-            CATEG     : Integer      @title: 'CATEG: Award Category';
-            NOTES     : String(5000) @title: 'NOTES: Notes';
-            STATS     : Integer      @title: 'STATS: Status';
-            REPBY     : String(50)   @title: 'REPBY: Reported By';
-            RBYNM     : String(250)  @title: 'RBYNM: Reported By name';
-            REPDT     : String(50)         @title: 'REPDT: Reported Date';
-            AWRDT     : String(50)         @title: 'AWRDT: Award Date';
-            STATS_TXT : String(250)  @title: 'STATS_TXT: Status Text';
+        key AWRID            : Integer64    @title: 'AWRID: Award ID - Primary Key';
+            AWARD            : Integer      @title: 'AWARD: AWARD';
+            ACMNT            : Integer      @title: 'ACMNT: Achivement (Dropdown)';
+            CATEG            : Integer      @title: 'CATEG: Award Category';
+            NOTES            : String(5000) @title: 'NOTES: Notes';
+            STATS            : Integer      @title: 'STATS: Status';
+            REPBY            : String(50)   @title: 'REPBY: Reported By';
+            RBYNM            : String(250)  @title: 'RBYNM: Reported By name';
+            REPDT            : String(50)   @title: 'REPDT: Reported Date';
+            AWRDT            : String(50)   @title: 'AWRDT: Award Date';
+            STATS_TXT        : String(250)  @title: 'STATS_TXT: Status Text';
             eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
                                    on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
@@ -132,30 +147,30 @@ context T {
             TITLE : String(250) @title: 'TITLE: Document Title';
             OBJID : String(50)  @title: 'OBJID: Object ID';
             URLDT : String(500) @title: 'URLDT: URL';
-            
+
     }
 
     @cds.persistence.exists
     @cds.persistence.calcview
     entity EMPLOYEELANDINGPAGE {
-        key AWRID     : Integer64    @title: 'AWRID: Award ID - Primary Key';
-            AWARD     : Integer      @title: 'AWARD: AWARD';
-            ACMNT     : Integer      @title: 'ACMNT: Achivement (Dropdown)';
-            CATEG     : Integer      @title: 'CATEG: Award Category';
-            CNAME     : String(1000) @title: 'CNAME: Certification Name';
-            NOTES     : String(5000) @title: 'NOTES: Notes';
-            STATS     : Integer      @title: 'STATS: Status';
-            REPBY     : String(50)   @title: 'REPBY: Reported By';
-            REPDT     : String(50)         @title: 'REPDT: Reported Date';
-            AWRDT     : String(50)         @title: 'AWRDT: Award Date';
-            ISDEL     : String(1)    @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
-            ATPTH     : String(500)  @title: 'ATPTH: attachment folder path';
-            RBYNM     : String(250)  @title: 'RBYNM: Reported By Name';
-            STATS_TXT : String(1000) @title: 'STATS_TXT: Text Value';
-            CATEG_TXT : String(1000) @title: 'CATEG_TXT: Text Value';
-            ANAME     : String(1000) @title: 'ANAME: Text Value';
-            ACMNT_TXT : String(1000) @title: 'ACMNT_TXT: Text Value';
-            AWARD_TXT : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
+        key AWRID            : Integer64    @title: 'AWRID: Award ID - Primary Key';
+            AWARD            : Integer      @title: 'AWARD: AWARD';
+            ACMNT            : Integer      @title: 'ACMNT: Achivement (Dropdown)';
+            CATEG            : Integer      @title: 'CATEG: Award Category';
+            CNAME            : String(1000) @title: 'CNAME: Certification Name';
+            NOTES            : String(5000) @title: 'NOTES: Notes';
+            STATS            : Integer      @title: 'STATS: Status';
+            REPBY            : String(50)   @title: 'REPBY: Reported By';
+            REPDT            : String(50)   @title: 'REPDT: Reported Date';
+            AWRDT            : String(50)   @title: 'AWRDT: Award Date';
+            ISDEL            : String(1)    @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
+            ATPTH            : String(500)  @title: 'ATPTH: attachment folder path';
+            RBYNM            : String(250)  @title: 'RBYNM: Reported By Name';
+            STATS_TXT        : String(1000) @title: 'STATS_TXT: Text Value';
+            CATEG_TXT        : String(1000) @title: 'CATEG_TXT: Text Value';
+            ANAME            : String(1000) @title: 'ANAME: Text Value';
+            ACMNT_TXT        : String(1000) @title: 'ACMNT_TXT: Text Value';
+            AWARD_TXT        : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
             eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
                                    on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
@@ -163,24 +178,24 @@ context T {
     @cds.persistence.exists
     @cds.persistence.calcview
     entity HRLANDINGPAGE {
-        key AWRID     : Integer64    @title: 'AWRID: Award ID - Primary Key';
-            AWARD     : Integer      @title: 'AWARD: AWARD';
-            ACMNT     : Integer      @title: 'ACMNT: Achivement (Dropdown)';
-            CATEG     : Integer      @title: 'CATEG: Award Category';
-            CNAME     : String(1000) @title: 'CNAME: Certification Name';
-            NOTES     : String(5000) @title: 'NOTES: Notes';
-            STATS     : Integer      @title: 'STATS: Status';
-            REPBY     : String(50)   @title: 'REPBY: Reported By';
-            REPDT     : String(50)         @title: 'REPDT: Reported Date';
-            AWRDT     : String(50)         @title: 'AWRDT: Award Date';
-            ISDEL     : String(1)    @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
-            ATPTH     : String(500)  @title: 'ATPTH: attachment folder path';
-            RBYNM     : String(250)  @title: 'RBYNM: Reported By Name';
-            STATS_TXT : String(1000) @title: 'STATS_TXT: Text Value';
-            CATEG_TXT : String(1000) @title: 'CATEG_TXT: Text Value';
-            ANAME     : String(1000) @title: 'ANAME: Text Value';
-            ACMNT_TXT : String(1000) @title: 'ACMNT_TXT: Text Value';
-            AWARD_TXT : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
+        key AWRID            : Integer64    @title: 'AWRID: Award ID - Primary Key';
+            AWARD            : Integer      @title: 'AWARD: AWARD';
+            ACMNT            : Integer      @title: 'ACMNT: Achivement (Dropdown)';
+            CATEG            : Integer      @title: 'CATEG: Award Category';
+            CNAME            : String(1000) @title: 'CNAME: Certification Name';
+            NOTES            : String(5000) @title: 'NOTES: Notes';
+            STATS            : Integer      @title: 'STATS: Status';
+            REPBY            : String(50)   @title: 'REPBY: Reported By';
+            REPDT            : String(50)   @title: 'REPDT: Reported Date';
+            AWRDT            : String(50)   @title: 'AWRDT: Award Date';
+            ISDEL            : String(1)    @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
+            ATPTH            : String(500)  @title: 'ATPTH: attachment folder path';
+            RBYNM            : String(250)  @title: 'RBYNM: Reported By Name';
+            STATS_TXT        : String(1000) @title: 'STATS_TXT: Text Value';
+            CATEG_TXT        : String(1000) @title: 'CATEG_TXT: Text Value';
+            ANAME            : String(1000) @title: 'ANAME: Text Value';
+            ACMNT_TXT        : String(1000) @title: 'ACMNT_TXT: Text Value';
+            AWARD_TXT        : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
             eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
                                    on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
@@ -188,25 +203,56 @@ context T {
     @cds.persistence.exists
     @cds.persistence.calcview
     entity HRANALYSTLANDINGPAGE {
-        key AWRID     : Integer64    @title: 'AWRID: Award ID - Primary Key';
-            AWARD     : Integer      @title: 'AWARD: AWARD';
-            ACMNT     : Integer      @title: 'ACMNT: Achivement (Dropdown)';
-            CATEG     : Integer      @title: 'CATEG: Award Category';
-            CNAME     : String(1000) @title: 'CNAME: Certification Name';
-            NOTES     : String(5000) @title: 'NOTES: Notes';
-            STATS     : Integer      @title: 'STATS: Status';
-            REPBY     : String(50)   @title: 'REPBY: Reported By';
-            REPDT     : String(50)         @title: 'REPDT: Reported Date';
-            AWRDT     : String(50)         @title: 'AWRDT: Award Date';
-            ISDEL     : String(1)    @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
-            ATPTH     : String(500)  @title: 'ATPTH: attachment folder path';
-            RBYNM     : String(250)  @title: 'RBYNM: Reported By Name';
-            STATS_TXT : String(1000) @title: 'STATS_TXT: Text Value';
-            CATEG_TXT : String(1000) @title: 'CATEG_TXT: Text Value';
-            ANAME     : String(1000) @title: 'ANAME: Text Value';
-            ACMNT_TXT : String(1000) @title: 'ACMNT_TXT: Text Value';
-            AWARD_TXT : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
+        key AWRID            : Integer64    @title: 'AWRID: Award ID - Primary Key';
+            AWARD            : Integer      @title: 'AWARD: AWARD';
+            ACMNT            : Integer      @title: 'ACMNT: Achivement (Dropdown)';
+            CATEG            : Integer      @title: 'CATEG: Award Category';
+            CNAME            : String(1000) @title: 'CNAME: Certification Name';
+            NOTES            : String(5000) @title: 'NOTES: Notes';
+            STATS            : Integer      @title: 'STATS: Status';
+            REPBY            : String(50)   @title: 'REPBY: Reported By';
+            REPDT            : String(50)   @title: 'REPDT: Reported Date';
+            AWRDT            : String(50)   @title: 'AWRDT: Award Date';
+            ISDEL            : String(1)    @title: 'ISDEL: Is Deleted Flag (1=True/0=False)';
+            ATPTH            : String(500)  @title: 'ATPTH: attachment folder path';
+            RBYNM            : String(250)  @title: 'RBYNM: Reported By Name';
+            STATS_TXT        : String(1000) @title: 'STATS_TXT: Text Value';
+            CATEG_TXT        : String(1000) @title: 'CATEG_TXT: Text Value';
+            ANAME            : String(1000) @title: 'ANAME: Text Value';
+            ACMNT_TXT        : String(1000) @title: 'ACMNT_TXT: Text Value';
+            AWARD_TXT        : String(1000) @title: 'AWARD_TXT: AWARD_TXT_1';
             eqIOvkYQPikXwyJp : Association to many ATTACHMENTDETAILS
                                    on eqIOvkYQPikXwyJp.AWRID = AWRID;
+    }
+
+
+    @cds.persistence.exists
+    @cds.persistence.calcview
+    entity TRAININGFORMLANDINGP {
+        key TRAID        : Integer64    @title: 'TRAID: Unique Id';
+        key USRID        : String(30)   @title: 'USRID: Employee ID';
+        key TDATE        : Date         @title: 'TDATE: Date of Training';
+        key TTYPE        : Int16        @title: 'TTYPE: Type of training';
+        key TRAININGTYPE : String(1000) @title: 'TRAININGTYPE: Text Value';
+        key TOPIC        : String(250)  @title: 'TOPIC: Training Topic';
+        key WILRN        : String(1000) @title: 'WILRN: What I learnt (Description)';
+        key TNAME        : String(250)  @title: 'TNAME: Trainer Name';
+            TROLE        : Int16        @title: 'TROLE: Training taken / participated';
+        key TRAININGROLE : String(1000) @title: 'TRAININGROLE: Text Value';
+            STATS        : Int16        @title: 'STATS: STATUS Unqid';
+        key STATUSTEXT   : String(1000) @title: 'STATUSTEXT: Text Value';
+    }
+
+
+    @cds.persistence.exists
+    @cds.persistence.calcview
+    entity EMPLOYEEDETAILS {
+        key EMPNM     : String(250) @title: 'EMPNM: Employee Name';
+            HIRDT     : Date        @title: 'HIRDT: Hired Date';
+            DEPNM     : String(200) @title: 'DEPNM: Deparment Name';
+            EMPID     : String(30)  @title: 'EMPID: Employee Id';
+            JOB_DESC  : String(30)  @title: 'JOB_DESC: JOB_DESC';
+            JOB_TITLE : String(500) @title: 'JOB_TITLE: JOB_TITLE';
+
     }
 }

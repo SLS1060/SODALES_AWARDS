@@ -104,12 +104,30 @@ async function createAuditLog(AWRID, REFID, RTYPE, SRVNM, PYLOD) {
     }
 }
 
-
+// This function is used to create an entry for a user if the rate limit has exceeded for the user.
+async function handleExceedUser(req) {
+    try {
+        const tx = cds.tx();
+ 
+        await tx.run(`CALL prIncCreateUserBlockRateLimit(?)`, [setValue(req.user.id)]);
+ 
+        // transaction commit
+        await tx.commit();
+ 
+        // Here you can add code to remove user from the IAS group
+ 
+ 
+    } catch (e) {
+        throw e;
+    }
+ 
+}
 module.exports = {
     setValue,
     validateField,
     fetchPayload,
     createCMISFolder,
     createErrorLog,
-    createAuditLog
+    createAuditLog,
+    handleExceedUser
 }

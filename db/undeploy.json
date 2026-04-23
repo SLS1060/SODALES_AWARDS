@@ -1,2 +1,4 @@
 [
+    "src/SDL/Synonyms/COMMON_SYNONYMS.hdbsynonym",
+    "src/SDL/MasterTables/SODLS_EMPDT.hdbtable"
 ]

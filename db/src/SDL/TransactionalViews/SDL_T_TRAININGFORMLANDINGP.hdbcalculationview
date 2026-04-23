@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_T_TRAININGFORMLANDINGP" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SDL_T_TRAININGFORMLANDINGP"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SDL_M_MSTDT">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
+  </DataSource>
+  <DataSource id="SDL_T_TRAPP">
+    <resourceUri>SDL_T_TRAPP</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_3$$$$SDL_M_MSTDT$$">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_4$$$$SDL_M_MSTDT$$">
+    <resourceUri>SDL_M_MSTDT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SDL_M_MSTDT"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot; ='Training Type' </filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="TRAID"/>
+      <viewAttribute id="USRID"/>
+      <viewAttribute id="TDATE"/>
+      <viewAttribute id="TTYPE"/>
+      <viewAttribute id="TOPIC"/>
+      <viewAttribute id="WILRN"/>
+      <viewAttribute id="TNAME"/>
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute id="TROLE"/>
+      <viewAttribute id="STATS"/>
+      <viewAttribute id="STATS_TXT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SDL_T_TRAPP"/>
+    <filter>&quot;ISDEL&quot;='0'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_3$$$$SDL_M_MSTDT$$"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot;='Training Taken/Given'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="UNQID"/>
+      <viewAttribute id="TYVAL"/>
+      <viewAttribute id="TXVAL"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_4$$$$SDL_M_MSTDT$$"/>
+    <filter>&quot;ISDEL&quot;='0' AND &quot;TYVAL&quot;='Status'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="TRAID" aggregationType="sum"/>
+      <viewAttribute id="USRID"/>
+      <viewAttribute id="TDATE"/>
+      <viewAttribute id="TTYPE" aggregationType="sum"/>
+      <viewAttribute id="TOPIC"/>
+      <viewAttribute id="WILRN"/>
+      <viewAttribute id="TNAME"/>
+      <viewAttribute id="TROLE" aggregationType="sum"/>
+      <viewAttribute id="STATS" aggregationType="sum"/>
+      <viewAttribute id="STATUSTEXT"/>
+      <viewAttribute hidden="true" id="JOIN$STATS$UNQID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRAID" source="TRAID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="USRID" source="USRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TDATE" source="TDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TTYPE" source="TTYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOPIC" source="TOPIC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WILRN" source="WILRN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TNAME" source="TNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TROLE" source="TROLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATS$UNQID" source="STATS"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSTEXT" source="TXVAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATS$UNQID" source="UNQID"/>
+    </input>
+    <joinAttribute name="JOIN$STATS$UNQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="CN_N" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="TRAID" aggregationType="sum"/>
+      <viewAttribute id="USRID"/>
+      <viewAttribute id="TDATE"/>
+      <viewAttribute id="TTYPE" aggregationType="sum"/>
+      <viewAttribute id="TOPIC"/>
+      <viewAttribute id="WILRN"/>
+      <viewAttribute id="TNAME"/>
+      <viewAttribute id="TROLE" aggregationType="sum"/>
+      <viewAttribute id="STATS" aggregationType="sum"/>
+      <viewAttribute id="STATUSTEXT"/>
+      <viewAttribute id="TRAININGROLE"/>
+      <viewAttribute hidden="true" id="JOIN$TROLE$UNQID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRAID" source="TRAID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="USRID" source="USRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TDATE" source="TDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TTYPE" source="TTYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOPIC" source="TOPIC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WILRN" source="WILRN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TNAME" source="TNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TROLE" source="TROLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSTEXT" source="STATUSTEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$TROLE$UNQID" source="TROLE"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRAININGROLE" source="TXVAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$TROLE$UNQID" source="UNQID"/>
+    </input>
+    <joinAttribute name="JOIN$TROLE$UNQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_3" cardinality="CN_N" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+    <viewAttributes>
+      <viewAttribute id="TRAID" aggregationType="sum"/>
+      <viewAttribute id="USRID"/>
+      <viewAttribute id="TDATE"/>
+      <viewAttribute id="TTYPE" aggregationType="sum"/>
+      <viewAttribute id="TOPIC"/>
+      <viewAttribute id="WILRN"/>
+      <viewAttribute id="TNAME"/>
+      <viewAttribute id="TROLE" aggregationType="sum"/>
+      <viewAttribute id="STATS" aggregationType="sum"/>
+      <viewAttribute id="STATUSTEXT"/>
+      <viewAttribute id="TRAININGROLE"/>
+      <viewAttribute id="TRAININGTYPE"/>
+      <viewAttribute hidden="true" id="JOIN$UNQID$TTYPE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRAININGTYPE" source="TXVAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$UNQID$TTYPE" source="UNQID"/>
+    </input>
+    <input node="Join_1_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRAID" source="TRAID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="USRID" source="USRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TDATE" source="TDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TTYPE" source="TTYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TOPIC" source="TOPIC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WILRN" source="WILRN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TNAME" source="TNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TROLE" source="TROLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATS" source="STATS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUSTEXT" source="STATUSTEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRAININGROLE" source="TRAININGROLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$UNQID$TTYPE" source="TTYPE"/>
+    </input>
+    <joinAttribute name="JOIN$UNQID$TTYPE"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1_3">
+  <attributes>
+    <attribute id="TRAID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Unique Id"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TRAID"/>
+    </attribute>
+    <attribute id="USRID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Employee ID"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="USRID"/>
+    </attribute>
+    <attribute id="TDATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Date of Training"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TDATE"/>
+    </attribute>
+    <attribute id="TTYPE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Type of training"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TTYPE"/>
+    </attribute>
+    <attribute id="TRAININGTYPE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TRAININGTYPE"/>
+    </attribute>
+    <attribute id="TOPIC" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Training Topic"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TOPIC"/>
+    </attribute>
+    <attribute id="WILRN" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="What I learnt (Description)"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="WILRN"/>
+    </attribute>
+    <attribute id="TNAME" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Trainer Name"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TNAME"/>
+    </attribute>
+    <attribute id="TRAININGROLE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TRAININGROLE"/>
+    </attribute>
+    <attribute id="STATUSTEXT" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Text Value"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="STATUSTEXT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TROLE" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Training taken / participated"/>
+      <measureMapping columnObjectName="Join_1_3" columnName="TROLE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="STATS" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="STATUS Unqid"/>
+      <measureMapping columnObjectName="Join_1_3" columnName="STATS"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-269" y="305"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="42" y="305"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="399" y="305"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="662" y="305"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="196"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="141"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="141"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="166"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="920" y="30"/>
+      <rectangleSize width="141"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

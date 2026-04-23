@@ -9,7 +9,7 @@ Content-Type: application/json
 ###
 {"D4OXYPALUYAIDNSO":"{\"AwardDetails\":{\"AWRID\":0,\"EMPID\":\"SLS1379\",\"AWARD\":10,\"ACMNT\":1, \"CATEG\":27, \"NOTES\":\"Notes\", \"STATS\":31, \"REPBY\":\"SLS1160\",\"REPDT\":\"2026-03-06\",\"AWRDT\":\"2026-03-06\", \"Attachments\": [{\"ATHID\":0,\"ATTNM\":\"Attachment Name\",\"TITLE\":\"Title\",\"URLDT\":\"URL1\" }, {\"ATHID\":0,\"ATTNM\":\"Attachment Name2\",\"TITLE\":\"Title2\",\"URLDT\":\"URL2\" }]}}"}
  
-###
+######
 
 POST http://localhost:40711/odata/v4/awards-service-employee/T5qTMWJSg36f8E6y
 Content-Type: application/json
@@ -21,3 +21,16 @@ Content-Type: application/json
 ###
 
 {"D4OXYPALUYAIDNSO": "{\"AwardDetails_Attach\":{\"Attachments\":[{\"ATHID\":47,\"AWRID\":50,\"ATTNM\":\"Attachment Name\",\"TITLE\":\"Title\",\"URLDT\":\"URL1\"},{\"ATHID\":48,\"AWRID\":50,\"ATTNM\":\"Attachment Name2\",\"TITLE\":\"Title2\",\"URLDT\":\"URL2\"}]}}"}
+
+### 
+
+POST http://localhost:4004/odata/v4/training-form/nnj2SMfWpAxlxnnk
+Content-Type: application/json
+
+{"D4OXYPALUYAIDNSO": "{\"FormDetails\":{\"TRAID\":0,\"TDATE\":\"2026-03-06\",\"TTYPE\":34,\"TOPIC\":\"Time Management\",\"WILRN\":\"description\",\"TNAME\":\"Nimesh Pande\"}}"}
+
+###
+POST http://localhost:4004/odata/v4/training-form/lmeJfKZ5au6dW0UX
+Content-Type: application/json
+
+{"D4OXYPALUYAIDNSO": "{\"FormDetails\":{\"TRAID\":2,\"STATS\":31,\"STATS_TXT\":\"Approved\"}}"}
