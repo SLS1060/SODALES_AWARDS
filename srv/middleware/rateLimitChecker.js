@@ -13,7 +13,7 @@ async function checkUserRateLimiter(req) {
   const key = `${userId}`;
   const now = Date.now();
   const windowMs = 5 * 1000;
-  const maxRequests = 500;
+  const maxRequests = 20;
  
   let entry = rateLimitStore.get(key);
   if (!entry) {

@@ -29,7 +29,7 @@
   </calculationView>
 </calculationViews>
 
-<logicalModel id="Projection_1" filterExpressionLanguage="SQL">
+<logicalModel id="Projection_1">
   <attributes>
     <attribute id="EMPNM" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Employee Name"/>

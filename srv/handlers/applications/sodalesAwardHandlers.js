@@ -25,7 +25,7 @@ async function AddAwards(req) {
 
         //Extracting Payload
         let oAwardDetails = oInput.AwardDetails;
-        //console.log(oAwardDetails.Attachments);
+       
         // let Attachments = oAwardDetails.Attachments;
 
         if (oAwardDetails.AWRID < 0 || !Number.isInteger(oAwardDetails.AWRID)) {
@@ -47,7 +47,7 @@ async function AddAwards(req) {
             setValue(oAwardDetails.AWRDT)       // Award Date
         ]);
         oAwardId = result.OAWRID;               // Output parameter
-        console.log("Award Id: ", oAwardId);
+       
 
 
         result = await cds.run(`SELECT YEAR(CRTDT), MONTH(CRTDT) FROM SDL_T_AWRDS WHERE AWRID = ? `, [oAwardId]);
@@ -57,7 +57,7 @@ async function AddAwards(req) {
 
         folderpath = Year;
         filename = "SDL_" + oAwardId.toString();
-        console.log(folderpath, filename);
+        //console.log(folderpath, filename);
         if (oAwardDetails.AWRID === 0) {
             //Logic to Create New Folder for New Incident 
             CMIS_Status = await createCMISFolder(folderpath, filename);
@@ -173,7 +173,7 @@ async function createAttachment(req) {
                     setValue(Attachments[i].URLDT)     // URL
                 ]);
                 oAttachId = result.OATHID;               // Output parameter
-                console.log("Attachment Id: ", oAttachId);
+                
             }
         }
         await createAuditLog(Attachments[0].AWRID, oAttachId, 'Attachment Id', 'createAttachment', JSON.stringify(oInput));

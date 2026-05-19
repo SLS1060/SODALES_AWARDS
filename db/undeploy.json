@@ -1,4 +1,5 @@
 [
     "src/SDL/Synonyms/COMMON_SYNONYMS.hdbsynonym",
-    "src/SDL/MasterTables/SODLS_EMPDT.hdbtable"
+    "src/SDL/MasterTables/SODLS_EMPDT.hdbtable",
+    "db/src/SDL/TransactionalViews/SDL_T_TRAININGFORMLANDINGP.hdbcalculationview"
 ]

@@ -7,16 +7,23 @@
 /*************************************************************************************************/
 using SDL from '../../db/awards';
 
-service trainingForm{
+service trainingFormEMP{
 
   //MASTER DATE - Training Type
   entity nK2h37sKzzBtxkqG as projection on SDL.M.TRAININGTYPE;
 
 //MASTER DATE - Training Type
   entity LQrp9ewvWHHb1dyB as projection on SDL.M.TRAININGROLE;
-  entity GlHfuLBLniz5sdf7 as projection on SDL.T.TRAININGFORMLANDINGP;
+
+  // EMPLOYEE DETAILS - MASTER DATA
+
+  entity RhWMdFK6sh0ZGegz as projection on SDL.M.EMPLOYEEDETAILS;
+  
+  entity GlHfuLBLniz5sdf7 as projection on SDL.T.FORMLPAGE;
 
     entity rciyHQLATCrvyqPM as projection on SDL.T.EMPLOYEEDETAILS;
+
+
 
     // View Y8RqqUfrPFRXWA5J(empid: String(250)) as select from
     // SDL.T.EMPLOYEEDETAILS(empid::empid)
@@ -29,6 +36,6 @@ service trainingForm{
     action nnj2SMfWpAxlxnnk(D4OXYPALUYAIDNSO: String) returns String;
 
     //Acept Reject Status
-    action lmeJfKZ5au6dW0UX(D4OXYPALUYAIDNSO: String) returns String;
+    action qmU9hLZZckICSjDa(D4OXYPALUYAIDNSO: String) returns String;
     
 }

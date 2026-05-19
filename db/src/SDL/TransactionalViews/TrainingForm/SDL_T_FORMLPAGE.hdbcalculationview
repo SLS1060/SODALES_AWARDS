@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_T_TRAININGFORMLANDINGP" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
-<descriptions defaultDescription="SDL_T_TRAININGFORMLANDINGP"/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SDL_T_FORMLPAGE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="SDL_T_FORMLPAGE"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -39,10 +39,10 @@
       <viewAttribute id="TOPIC"/>
       <viewAttribute id="WILRN"/>
       <viewAttribute id="TNAME"/>
-      <viewAttribute id="ISDEL"/>
       <viewAttribute id="TROLE"/>
       <viewAttribute id="STATS"/>
       <viewAttribute id="STATS_TXT"/>
+      <viewAttribute id="ISDEL"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SDL_T_TRAPP"/>
@@ -72,15 +72,15 @@
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
     <viewAttributes>
-      <viewAttribute id="TRAID" aggregationType="sum"/>
+      <viewAttribute id="TRAID"/>
       <viewAttribute id="USRID"/>
       <viewAttribute id="TDATE"/>
-      <viewAttribute id="TTYPE" aggregationType="sum"/>
+      <viewAttribute id="TTYPE"/>
       <viewAttribute id="TOPIC"/>
       <viewAttribute id="WILRN"/>
       <viewAttribute id="TNAME"/>
-      <viewAttribute id="TROLE" aggregationType="sum"/>
-      <viewAttribute id="STATS" aggregationType="sum"/>
+      <viewAttribute id="TROLE"/>
+      <viewAttribute id="STATS"/>
       <viewAttribute id="STATUSTEXT"/>
       <viewAttribute hidden="true" id="JOIN$STATS$UNQID"/>
     </viewAttributes>
@@ -103,17 +103,17 @@
     </input>
     <joinAttribute name="JOIN$STATS$UNQID"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="CN_N" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
     <viewAttributes>
-      <viewAttribute id="TRAID" aggregationType="sum"/>
+      <viewAttribute id="TRAID"/>
       <viewAttribute id="USRID"/>
       <viewAttribute id="TDATE"/>
-      <viewAttribute id="TTYPE" aggregationType="sum"/>
+      <viewAttribute id="TTYPE"/>
       <viewAttribute id="TOPIC"/>
       <viewAttribute id="WILRN"/>
       <viewAttribute id="TNAME"/>
-      <viewAttribute id="TROLE" aggregationType="sum"/>
-      <viewAttribute id="STATS" aggregationType="sum"/>
+      <viewAttribute id="TROLE"/>
+      <viewAttribute id="STATS"/>
       <viewAttribute id="STATUSTEXT"/>
       <viewAttribute id="TRAININGROLE"/>
       <viewAttribute hidden="true" id="JOIN$TROLE$UNQID"/>
@@ -138,17 +138,17 @@
     </input>
     <joinAttribute name="JOIN$TROLE$UNQID"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1_3" cardinality="CN_N" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1_3" cardinality="CN_N" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="Projection_1" multiJoinOrder="Outside In">
     <viewAttributes>
-      <viewAttribute id="TRAID" aggregationType="sum"/>
+      <viewAttribute id="TRAID"/>
       <viewAttribute id="USRID"/>
       <viewAttribute id="TDATE"/>
-      <viewAttribute id="TTYPE" aggregationType="sum"/>
+      <viewAttribute id="TTYPE"/>
       <viewAttribute id="TOPIC"/>
       <viewAttribute id="WILRN"/>
       <viewAttribute id="TNAME"/>
-      <viewAttribute id="TROLE" aggregationType="sum"/>
-      <viewAttribute id="STATS" aggregationType="sum"/>
+      <viewAttribute id="TROLE"/>
+      <viewAttribute id="STATS"/>
       <viewAttribute id="STATUSTEXT"/>
       <viewAttribute id="TRAININGROLE"/>
       <viewAttribute id="TRAININGTYPE"/>
@@ -195,23 +195,31 @@
       <descriptions defaultDescription="Type of training"/>
       <keyMapping columnObjectName="Join_1_3" columnName="TTYPE"/>
     </attribute>
-    <attribute id="TRAININGTYPE" order="5" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Text Value"/>
-      <keyMapping columnObjectName="Join_1_3" columnName="TRAININGTYPE"/>
-    </attribute>
-    <attribute id="TOPIC" order="6" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TOPIC" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Training Topic"/>
       <keyMapping columnObjectName="Join_1_3" columnName="TOPIC"/>
     </attribute>
-    <attribute id="WILRN" order="7" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="WILRN" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="What I learnt (Description)"/>
       <keyMapping columnObjectName="Join_1_3" columnName="WILRN"/>
     </attribute>
-    <attribute id="TNAME" order="8" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TNAME" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Trainer Name"/>
       <keyMapping columnObjectName="Join_1_3" columnName="TNAME"/>
     </attribute>
-    <attribute id="TRAININGROLE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TROLE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Training taken / participated"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TROLE"/>
+    </attribute>
+    <attribute id="STATS" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS Unqid"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="STATS"/>
+    </attribute>
+    <attribute id="TRAININGTYPE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXVAL"/>
+      <keyMapping columnObjectName="Join_1_3" columnName="TRAININGTYPE"/>
+    </attribute>
+    <attribute id="TRAININGROLE" order="11" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Text Value"/>
       <keyMapping columnObjectName="Join_1_3" columnName="TRAININGROLE"/>
     </attribute>
@@ -221,48 +229,39 @@
     </attribute>
   </attributes>
   <calculatedAttributes/>
-  <baseMeasures>
-    <measure id="TROLE" order="9" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="Training taken / participated"/>
-      <measureMapping columnObjectName="Join_1_3" columnName="TROLE"/>
-      <exceptionAggregationMetadata/>
-    </measure>
-    <measure id="STATS" order="11" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="STATUS Unqid"/>
-      <measureMapping columnObjectName="Join_1_3" columnName="STATS"/>
-      <exceptionAggregationMetadata/>
-    </measure>
-  </baseMeasures>
+  <baseMeasures/>
   <calculatedMeasures/>
   <restrictedMeasures/>
-  <localDimensions/>
 </logicalModel>
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="40" y="85"/>
+      <upperLeftCorner x="474" y="112"/>
+    
+      <rectangleSize width="160"/>
     </shape>
     
   
     <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-269" y="305"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="42" y="305"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="399" y="305"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="662" y="305"/>
+      <upperLeftCorner x="302" y="406"/>
       <rectangleSize height="30" width="160"/>
     </shape>
   
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="722" y="406"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512" y="406"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="406"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="196"/>
+      <upperLeftCorner x="474" y="217"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
@@ -280,6 +279,7 @@
     <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
       <upperLeftCorner x="920" y="30"/>
       <rectangleSize width="141"/>
-    </shape></shapes>
+    </shape>
+  </shapes>
 </layout>
 </Calculation:scenario>

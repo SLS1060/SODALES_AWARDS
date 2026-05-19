@@ -12,6 +12,7 @@ const cds = require('@sap/cds');
 const { checkUserRateLimiter } = require('../middleware/rateLimitChecker');
 
 const addForms = require('../handlers/applications/trainingFormHandlers');
+const { isHRA } = require('../handlers/roles/roleshandler');
 
 module.exports = cds.service.impl(function () {
 
@@ -19,8 +20,10 @@ module.exports = cds.service.impl(function () {
     //Check RateLimit
      this.before("*",checkUserRateLimiter);
 
+     this.before("*",isHRA);
+
      this.on("nnj2SMfWpAxlxnnk",addForms.addTrainingForm );
 
      //Acept Reject Status
-     this.on("lmeJfKZ5au6dW0UX",addForms.AcceptReject);
+     this.on("qmU9hLZZckICSjDa",addForms.AcceptReject);
 });

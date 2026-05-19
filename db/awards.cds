@@ -225,25 +225,6 @@ context T {
                                    on eqIOvkYQPikXwyJp.AWRID = AWRID;
     }
 
-
-    @cds.persistence.exists
-    @cds.persistence.calcview
-    entity TRAININGFORMLANDINGP {
-        key TRAID        : Integer64    @title: 'TRAID: Unique Id';
-        key USRID        : String(30)   @title: 'USRID: Employee ID';
-        key TDATE        : Date         @title: 'TDATE: Date of Training';
-        key TTYPE        : Int16        @title: 'TTYPE: Type of training';
-        key TRAININGTYPE : String(1000) @title: 'TRAININGTYPE: Text Value';
-        key TOPIC        : String(250)  @title: 'TOPIC: Training Topic';
-        key WILRN        : String(1000) @title: 'WILRN: What I learnt (Description)';
-        key TNAME        : String(250)  @title: 'TNAME: Trainer Name';
-            TROLE        : Int16        @title: 'TROLE: Training taken / participated';
-        key TRAININGROLE : String(1000) @title: 'TRAININGROLE: Text Value';
-            STATS        : Int16        @title: 'STATS: STATUS Unqid';
-        key STATUSTEXT   : String(1000) @title: 'STATUSTEXT: Text Value';
-    }
-
-
     @cds.persistence.exists
     @cds.persistence.calcview
     entity EMPLOYEEDETAILS {
@@ -253,6 +234,28 @@ context T {
             EMPID     : String(30)  @title: 'EMPID: Employee Id';
             JOB_DESC  : String(30)  @title: 'JOB_DESC: JOB_DESC';
             JOB_TITLE : String(500) @title: 'JOB_TITLE: JOB_TITLE';
+            GlHfuLBLniz5sdf7 : Association to many FORMLPAGE
+                                   on GlHfuLBLniz5sdf7.USRID = EMPID;
 
     }
+
+   @cds.persistence.exists 
+@cds.persistence.calcview 
+entity FORMLPAGE {
+key     TRAID: Integer64  @title: 'TRAID: Unique Id' ; 
+        USRID: String(30)  @title: 'USRID: Employee ID' ; 
+        TDATE: Date  @title: 'TDATE: Date of Training' ; 
+        TTYPE: Int16  @title: 'TTYPE: Type of training' ; 
+        TOPIC: String(250)  @title: 'TOPIC: Training Topic' ; 
+        WILRN: String(1000)  @title: 'WILRN: What I learnt (Description)' ; 
+        TNAME: String(250)  @title: 'TNAME: Trainer Name' ; 
+        TROLE: Int16  @title: 'TROLE: Training taken / participated' ; 
+        STATS: Int16  @title: 'STATS: STATUS Unqid' ; 
+        TRAININGTYPE: String(1000)  @title: 'TRAININGTYPE: TXVAL' ; 
+        TRAININGROLE: String(1000)  @title: 'TRAININGROLE: Text Value' ; 
+        STATUSTEXT: String(1000)  @title: 'STATUSTEXT: Text Value' ; 
+}
+
+
+
 }

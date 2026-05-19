@@ -46,7 +46,7 @@ async function addTrainingForm(req){
             setValue(oFormDetails.TNAME)
         ]);
         let oTRAID = result.OTRAID;
-        console.log("Training ID: ",oTRAID);
+        // console.log("Training ID: ",oTRAID);
 
         await createAuditLog(oTRAID, oTRAID, 'Training ID', 'addForm', JSON.stringify(oInput));
 

@@ -24,13 +24,13 @@ Content-Type: application/json
 
 ### 
 
-POST http://localhost:4004/odata/v4/training-form/nnj2SMfWpAxlxnnk
+POST http://localhost:38209/odata/v4/training-form-emp/nnj2SMfWpAxlxnnk
 Content-Type: application/json
 
-{"D4OXYPALUYAIDNSO": "{\"FormDetails\":{\"TRAID\":0,\"TDATE\":\"2026-03-06\",\"TTYPE\":34,\"TOPIC\":\"Time Management\",\"WILRN\":\"description\",\"TNAME\":\"Nimesh Pande\"}}"}
+{"D4OXYPALUYAIDNSO": "{\"FormDetails\":{\"TRAID\":0,\"TDATE\":\"2026-03-06\",\"TTYPE\":34,\"TOPIC\":\"Productivity\",\"WILRN\":\"description\",\"TNAME\":\"Sanjyot P\"}}"}
 
 ###
-POST http://localhost:4004/odata/v4/training-form/lmeJfKZ5au6dW0UX
+POST http://localhost:38209/odata/v4/training-form/lmeJfKZ5au6dW0UX
 Content-Type: application/json
 
 {"D4OXYPALUYAIDNSO": "{\"FormDetails\":{\"TRAID\":2,\"STATS\":31,\"STATS_TXT\":\"Approved\"}}"}

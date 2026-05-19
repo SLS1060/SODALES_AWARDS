@@ -21,7 +21,7 @@ module.exports = cds.service.impl(function () {
 
     this.before("*",checkUserRateLimiter);
 
-    this.before("*",isHRA);
+   this.before("*",isHRA);
     // Add new Award (main operation)
     this.on("b9q2fsan18bqxar0", addAwards.AddAwards);
 
